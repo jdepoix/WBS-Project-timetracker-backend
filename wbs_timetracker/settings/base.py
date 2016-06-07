@@ -38,7 +38,11 @@ THIRD_PARTY_APPS = [
 ]
 
 INTERNAL_APPS = [
-    'api'
+    #api
+    'api',
+
+    #data
+    'data.legacy',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + INTERNAL_APPS
