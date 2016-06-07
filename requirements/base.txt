@@ -1,0 +1,6 @@
+# django
+django==1.9.7
+
+# django REST framework
+djangorestframework==3.3.3
+markdown==2.6.6
