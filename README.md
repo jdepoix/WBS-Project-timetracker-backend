@@ -1,3 +1,14 @@
+# Setup
+
+To setup the project run the setup script as sudo. You can find the setup script in the `setup` folder. This will create a virtualenv and install all requirements.
+
+>`sudo ./local`
+
+If you're deploying on a production system, execture `prod` instead.
+
+Afterwards, make a copy of `passwords.template.json` and rename it to `passwords.json`. Now fill in the passwords, needed for your environment.
+
+
 # Routes
 
 ```[GET]		users/<user_id>/```

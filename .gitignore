@@ -2,3 +2,4 @@ virtualenv
 passwords.json
 .idea
 *.pyc
+.DS_Store
