@@ -1,1 +1,1 @@
-default_app_config = 'wbs_timetracker.data.legacy.project.apps.ProjectConfig'
+default_app_config = 'data.legacy.project.apps.ProjectConfig'

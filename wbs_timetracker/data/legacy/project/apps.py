@@ -2,9 +2,10 @@ from django.apps import AppConfig
 
 
 class ProjectConfig(AppConfig):
-    name = 'wbs_timetracker.data.legacy.project'
+    name = 'data.legacy.project'
     label = 'Project'
 
     def ready(self):
-        #TODO load DBs
-        pass
+        from data.legacy.project.project_db_loader import ProjectDbLoader
+
+        ProjectDbLoader().load_dbs()
