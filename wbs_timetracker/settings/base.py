@@ -42,7 +42,8 @@ INTERNAL_APPS = [
     'api',
 
     #data
-    'data.legacy',
+    'data.legacy.id_wbs',
+    'data.legacy.project',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + INTERNAL_APPS
