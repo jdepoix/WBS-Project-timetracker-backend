@@ -59,14 +59,16 @@ ROOT_URLCONF = 'wbs_timetracker.urls'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+WBS_ID_DATABSE_NAME = 'id_wbs'
+
 DATABASES = {
     'default': {
-        'ENGINE': PASSWORDS.get('wbs_id_database').get('engine'),
-        'NAME': PASSWORDS.get('wbs_id_database').get('name'),
-        'USER': PASSWORDS.get('wbs_id_database').get('user'),
-        'PASSWORD': PASSWORDS.get('wbs_id_database').get('password'),
-        'HOST': PASSWORDS.get('wbs_id_database').get('host'),
-        'PORT': PASSWORDS.get('wbs_id_database').get('port'),
+        'ENGINE': PASSWORDS.get('database').get('engine'),
+        'NAME': WBS_ID_DATABSE_NAME,
+        'USER': PASSWORDS.get('database').get('user'),
+        'PASSWORD': PASSWORDS.get('database').get('password'),
+        'HOST': PASSWORDS.get('database').get('host'),
+        'PORT': PASSWORDS.get('database').get('port'),
     }
 }
 
