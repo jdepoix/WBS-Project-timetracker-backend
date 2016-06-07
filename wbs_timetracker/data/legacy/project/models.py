@@ -29,6 +29,7 @@ class WorkEffort(models.Model):
 class Workpackage(models.Model):
     string_id = models.CharField(max_length=255)
     fid_project = models.IntegerField()
+    """be aware, that this is a ForeignKey, which is not implemented as such, since there is no Model for the referencing table"""
     fid_resp_emp = models.ForeignKey(Employees, models.DO_NOTHING, db_column='fid_resp_emp')
     fid_parent = models.IntegerField(blank=True, null=True)
     parent_order_id = models.IntegerField()

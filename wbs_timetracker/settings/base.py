@@ -43,6 +43,7 @@ INTERNAL_APPS = [
     'api',
 
     #data
+    'data.wbs_user',
     'data.legacy.id_wbs',
     'data.legacy.project',
 ]
