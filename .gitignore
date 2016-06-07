@@ -1,3 +1,4 @@
 virtualenv
 passwords.json
 .idea
+*.pyc
