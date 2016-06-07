@@ -11,6 +11,17 @@ Afterwards, make a copy of `passwords.template.json` and rename it to `passwords
 
 # Routes
 
+```[POST]		login/```
+- returns a authentication token, if correct credentials are supplied.
+
+  ######POST DATA:
+  ```js
+  {
+  	username: <String>,
+  	password: <String>
+  }
+  ```
+
 ```[GET]		users/<user_id>/```
 - show specific information about the user with the user id \<user_id\>.
 
@@ -89,6 +100,3 @@ Afterwards, make a copy of `passwords.template.json` and rename it to `passwords
 		etc: <double>
 	}
 	```
-
-
-```//TODO login, depending on authentication system```
