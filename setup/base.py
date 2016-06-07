@@ -1,8 +1,9 @@
 import os
 
 
-VIRTUAL_ENV_PATH = '../virtualenv'
-REQUIREMENTS_PATH = '../requirements'
+PROJECT_BASE_PATH = os.path.realpath(__file__) + '/../..'
+VIRTUAL_ENV_PATH = PROJECT_BASE_PATH + '/virtualenv'
+REQUIREMENTS_PATH = PROJECT_BASE_PATH + '/requirements'
 
 def execute(command):
     os.system(command)
