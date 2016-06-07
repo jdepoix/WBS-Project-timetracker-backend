@@ -2,7 +2,7 @@
 
 To setup the project run the setup script as sudo. You can find the setup script in the `setup` folder. This will create a virtualenv and install all requirements.
 
->`sudo ./local`
+>`sudo ./dev`
 
 If you're deploying on a production system, execture `prod` instead.
 
