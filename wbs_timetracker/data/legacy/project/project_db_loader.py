@@ -16,24 +16,4 @@ class ProjectDbLoader(DbLoader):
         :return: list of db configs
         :rtype: list<dict>
         """
-        return [self._get_project_db_config(db) for db in DbIdentifier.objects.all()]
-
-    def _get_project_db_config(self, db):
-        """
-        gets the db config for a given db
-
-        :param db: db to get the config for
-        :type db: DbIdentifier
-        :return: db config dict
-        :rtype: dict
-        """
-        return {
-            str(db.id): {
-                'ENGINE': PASSWORDS.get('database').get('engine'),
-                'NAME': db.db,
-                'USER': PASSWORDS.get('database').get('user'),
-                'PASSWORD': PASSWORDS.get('database').get('password'),
-                'HOST': PASSWORDS.get('database').get('host'),
-                'PORT': PASSWORDS.get('database').get('port'),
-            }
-        }
+        return [db.db_config for db in DbIdentifier.objects.all()]
