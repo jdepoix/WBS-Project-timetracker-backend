@@ -1,6 +1,6 @@
 from django.db import models
 
-from settings.base import PASSWORDS
+from settings.base import CONF
 
 
 class DbIdentifier(models.Model):
@@ -16,12 +16,12 @@ class DbIdentifier(models.Model):
         """
         return {
             str(self.id): {
-                'ENGINE': PASSWORDS.get('database').get('engine'),
+                'ENGINE': CONF.get('database').get('engine'),
                 'NAME': self.db,
-                'USER': PASSWORDS.get('database').get('user'),
-                'PASSWORD': PASSWORDS.get('database').get('password'),
-                'HOST': PASSWORDS.get('database').get('host'),
-                'PORT': PASSWORDS.get('database').get('port'),
+                'USER': CONF.get('database').get('user'),
+                'PASSWORD': CONF.get('database').get('password'),
+                'HOST': CONF.get('database').get('host'),
+                'PORT': CONF.get('database').get('port'),
             }
         }
 

@@ -1,4 +1,4 @@
-from settings.base import PASSWORDS
+from settings.base import CONF
 
 from data.core.db_loader import DbLoader
 from data.legacy.id_wbs.models import DbIdentifier

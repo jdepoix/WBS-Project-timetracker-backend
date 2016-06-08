@@ -6,7 +6,7 @@ To setup the project run the setup script as sudo. You can find the setup script
 
 If you're deploying on a production system, execture `prod` instead.
 
-Afterwards, make a copy of `passwords.template.json` and rename it to `passwords.json`. Now fill in the passwords, needed for your environment.
+Afterwards, make a copy of `conf.template.json` and rename it to `conf.json`. Now fill in the settings, needed for your environment.
 
 
 # Routes

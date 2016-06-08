@@ -1,5 +1,5 @@
 virtualenv
-passwords.json
+conf.json
 .idea
 *.pyc
 .DS_Store

@@ -13,9 +13,9 @@ import json
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PASSWORD_FILEPATH = PROJECT_DIR + '/passwords.json'
+CONF_FILEPATH = PROJECT_DIR + '/conf.json'
 
-PASSWORDS = json.load(open(PASSWORD_FILEPATH))
+CONF = json.load(open(CONF_FILEPATH))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'a7c=br_wnq7($(!*()#dtm*nbzz@^kq1v7+#)ni(@rb3g2_p9%'
@@ -86,12 +86,12 @@ WBS_ID_DATABSE_NAME = 'id_wbs'
 
 DATABASES = {
     'default': {
-        'ENGINE': PASSWORDS.get('database').get('engine'),
+        'ENGINE': CONF.get('database').get('engine'),
         'NAME': WBS_ID_DATABSE_NAME,
-        'USER': PASSWORDS.get('database').get('user'),
-        'PASSWORD': PASSWORDS.get('database').get('password'),
-        'HOST': PASSWORDS.get('database').get('host'),
-        'PORT': PASSWORDS.get('database').get('port'),
+        'USER': CONF.get('database').get('user'),
+        'PASSWORD': CONF.get('database').get('password'),
+        'HOST': CONF.get('database').get('host'),
+        'PORT': CONF.get('database').get('port'),
     }
 }
 
