@@ -22,15 +22,23 @@ class BaseModelSerializer(serializers.HyperlinkedModelSerializer):
                 self.fields.pop(field_name)
 
     @staticmethod
-    def default_serializer_factory(model_object):
+    def default_serializer_factory(model_object, model_fields=None):
         """
         factory for a default serializer class
 
         :param model_object: the model the serializer is created for
+        :type model_object: models.Model
+        :param model_fields: optional iterable of fields
+        :type model_fields: iterable
         :return: a default serializer class
         """
         class DefaultSerializer(BaseModelSerializer):
             class Meta:
                 model = model_object
 
-        return DefaultSerializer
+        class DefaultCustomFieldSerializer(BaseModelSerializer):
+            class Meta:
+                model = model_object
+                fields = model_fields
+
+        return DefaultCustomFieldSerializer if model_fields else DefaultSerializer
