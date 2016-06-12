@@ -37,7 +37,7 @@ Afterwards, make a copy of `conf.template.json` and rename it to `conf.json`. No
   ```
 
 ```[DELETE]     booking-sessions/<booking_session_id>/```
-- close the booking session with the id \<booking_session_id\>.
+- close the booking session with the id `<booking_session_id>`.
 
 ```[GET]		projects/```
 - list all projects for the currently logged in user.
@@ -49,7 +49,7 @@ Afterwards, make a copy of `conf.template.json` and rename it to `conf.json`. No
 	no post data is needed, since the information is already in the database.
 
 ```[GET]		projects/<project_id>/```
-- show specific information about the project with the id \<project_id\>.
+- show specific information about the project with the id `<project_id>`.
 
 ```[GET]		projects/<project_id>/bookings/(?(date|workpackage_id))```
 - lists all bookings on this project.
@@ -79,22 +79,22 @@ Afterwards, make a copy of `conf.template.json` and rename it to `conf.json`. No
 	```
 
 ```[GET]		projects/<project_id>/bookings/<booking_id>/```
-- lists all information regarding the booking with the booking id \<booking_id\>.
+- lists all information regarding the booking with the booking id `<booking_id>`.
 
 ```[PATCH]		projects/<project_id>/bookings/<booking_id>/```
-- updates the booking with the id \<booking_id\>. Data format is the same as for POSTs.
+- updates the booking with the id `<booking_id>`. Data format is the same as for POSTs.
 
 ```[DELETE]	    projects/<project_id>/bookings/<booking_id>/```
-- deletes the booking with the id \<booking_id\>.
+- deletes the booking with the id `<booking_id>`.
 
 ```[GET]		projects/<project_id>/workpackages/```
-- lists all workpackages for the project with the id \<project_id\>.
+- lists all workpackages for the project with the id `<project_id>`.
 
 ```[GET]		projects/<project_id>/workpackages/<workpackage_id>/```
-- lists specific information regarding the workpackage with the id \<workpackage_id\>.
+- lists specific information regarding the workpackage with the id `<workpackage_id>`.
 
 ```[PATCH]		projects/<project_id>/workpackages/<workpackage_id>/```
-- update the ETC of the workpackage with the id \<workpackage_id\>.
+- update the ETC of the workpackage with the id `<workpackage_id>`.
 
 	######PATCH DATA:
 	```js
