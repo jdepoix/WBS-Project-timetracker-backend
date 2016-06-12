@@ -6,6 +6,7 @@ class BaseModelSerializer(serializers.HyperlinkedModelSerializer):
     A ModelSerializer that takes an additional `fields` argument that
     controls which fields should be displayed.
     """
+    url_field_name = 'self'
 
     def __init__(self, *args, **kwargs):
         # Don't pass the 'fields' arg up to the superclass
