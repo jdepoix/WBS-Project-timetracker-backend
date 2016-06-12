@@ -1,13 +1,18 @@
 # Setup
 
-To setup the project run the setup script as sudo. You can find the setup script in the `setup` folder. This will create a virtualenv and install all requirements.
+### Requirements
+- pip
+- mysql
+
+Make a copy of `conf.template.json` and rename it to `conf.json`. Now fill in the settings, needed for your environment.
+
+To setup the project run the setup script as sudo. You can find the setup script in the `setup` folder. This will create a virtualenv, install all requirements and run the migrations.
 
 >`sudo ./dev`
 
-If you're deploying on a production system, execture `prod` instead.
+If you're deploying on a production system, execture `prod` instead. Also you should consider using a dedicated user instead of running as root.
 
-Afterwards, make a copy of `conf.template.json` and rename it to `conf.json`. Now fill in the settings, needed for your environment.
-
+Note that the setup scripts only supports Unix based OS'es.
 
 # Routes
 

@@ -4,3 +4,4 @@ from base import *
 
 
 install_requirements('dev.txt')
+run_migrations()

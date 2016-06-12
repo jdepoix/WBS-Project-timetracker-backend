@@ -18,5 +18,8 @@ def setup_virtualenv():
 def install_requirements(filename):
     sudo(VIRTUAL_ENV_PATH + '/bin/pip install -r ' + REQUIREMENTS_PATH + '/' + filename)
 
+def run_migrations():
+    sudo(PROJECT_BASE_PATH + ' manage.py migrate')
+
 
 setup_virtualenv()
