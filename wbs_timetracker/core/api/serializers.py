@@ -51,6 +51,5 @@ class ZeroTimeDateTimeField(serializers.DateTimeField):
     a date field should have been used...
     """
     def to_internal_value(self, value):
-        print 'to internal value'
         value += ' 00:00:00'
         return super(ZeroTimeDateTimeField, self).to_internal_value(value)

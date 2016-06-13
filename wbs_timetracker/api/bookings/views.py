@@ -14,3 +14,24 @@ class BookingsModelViewSet(ModelViewSet):
         ).filter(
             employee__login=self.request.user.username
         )
+
+    def create(self, request, *args, **kwargs):
+        response = super(BookingsModelViewSet, self).create(request, *args, **kwargs)
+
+        # TODO EVA recalc
+
+        return response
+
+    def update(self, request, *args, **kwargs):
+        response = super(BookingsModelViewSet, self).update(request, *args, **kwargs)
+
+        # TODO EVA recalc
+
+        return response
+
+    def destroy(self, request, *args, **kwargs):
+        response = super(BookingsModelViewSet, self).destroy(request, *args, **kwargs)
+
+        # TODO EVA recalc
+
+        return response
