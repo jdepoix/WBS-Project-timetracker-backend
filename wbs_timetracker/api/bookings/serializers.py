@@ -4,13 +4,22 @@ from core.api.serializers import BaseModelSerializer, ZeroTimeDateTimeField
 
 from data.legacy.project.models import WorkEffort
 
+from api.projects.serializers import SubProjectHyperlinkedRelatedField
+
+
+class BookingsHyperlinkedRelatedField(SubProjectHyperlinkedRelatedField):
+    view_name = 'workeffort-detail'
+
+    @property
+    def model(self):
+        return WorkEffort
+
 
 class WorkEffortSerializer(BaseModelSerializer):
     #TODO add link to workpackage
-    #TODO custom self link
-    # self = serializers.HyperlinkedIdentityField(view_name='workeffort-detail')
+    self = BookingsHyperlinkedRelatedField(read_only=True, source='*')
     date = ZeroTimeDateTimeField(source='rec_date')
 
     class Meta:
         model = WorkEffort
-        fields = ['effort', 'description', 'date']
+        fields = ['effort', 'description', 'date', 'self']
