@@ -72,12 +72,12 @@ Note that the setup scripts only supports Unix based OS'es.
 	######POST DATA:
 	```js
 	{
-		/** the id of the workpackage this booking belongs to */
-		workpackageId: <int>,
+		/** link to the workpackage this booking belongs to */
+		workpackage: <URL>,
 		/** the date of this booking. Format: YYYY-MM-DD */
 		date: <date>,
-		/** the workeffort in hours */
-		workEffort: <double>,
+		/** the workeffort in workdays (8h) */
+		effort: <double>,
 		/** the description of what was done */
 		description: <String>
 	}
