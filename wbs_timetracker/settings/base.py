@@ -100,7 +100,8 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissions'
-    ]
+    ],
+    'DATETIME_FORMAT': '%Y-%m-%d',
 }
 
 # Password validation
