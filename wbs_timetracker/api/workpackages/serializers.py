@@ -20,7 +20,27 @@ class WorkpackageSerializer(BaseModelSerializer):
     stringId = serializers.CharField(source='string_id', read_only=True)
     name = serializers.CharField(read_only=True)
     description = serializers.CharField(read_only=True)
+    isToplevelWp = serializers.BooleanField(source='is_toplevel_wp', read_only=True)
+    isInactive = serializers.BooleanField(source='is_inactive', read_only=True)
+    bac = serializers.FloatField(read_only=True)
+    ac = serializers.FloatField(read_only=True)
+    ev = serializers.FloatField(read_only=True)
+    eac = serializers.FloatField(read_only=True)
+    cpi = serializers.FloatField(read_only=True)
 
     class Meta:
         model = Workpackage
-        fields = ('string_id', 'name', 'description', 'etc', 'self')
+        fields = (
+            'self',
+            'stringId',
+            'name',
+            'description',
+            'isToplevelWp',
+            'isInactive',
+            'etc',
+            'bac',
+            'ac',
+            'ev',
+            'eac',
+            'cpi',
+        )

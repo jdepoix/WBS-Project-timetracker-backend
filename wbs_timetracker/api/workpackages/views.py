@@ -7,21 +7,17 @@ from api.workpackages.serializers import WorkpackageSerializer
 
 class WorkpackagesModelViewSet(
     mixins.ListModelMixin,
-    mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
     mixins.UpdateModelMixin,
     viewsets.GenericViewSet
 ):
     serializer_class = WorkpackageSerializer
 
     def get_queryset(self):
-        # TODO
-        # return Workpackage.objects.using(
-        #     self.kwargs.get('project_id')
-        # ).filter(
-        #     employee__login=self.request.user.username
-        # )
-        pass
-
+        # TODO filter by logged in user
+        return Workpackage.objects.using(
+            self.kwargs.get('project_id')
+        )
 
     def update(self, request, *args, **kwargs):
         response = super(WorkpackagesModelViewSet, self).update(request, *args, **kwargs)
