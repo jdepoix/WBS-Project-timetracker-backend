@@ -20,13 +20,13 @@ class SubProjectHyperlinkedRelatedField(serializers.HyperlinkedRelatedField):
 
     def get_object(self, view_name, view_args, view_kwargs):
         return self.get_queryset().get(
-            view_kwargs.get('pk')
+            pk=view_kwargs.get('pk')
         )
 
     def get_queryset(self):
-        self.model.objects.using(
+        return self.model.objects.using(
             self.context.get('request').parser_context.get('kwargs').get('project_id')
-        )
+        ).all()
 
     @abstractproperty
     def model(self):
