@@ -22,7 +22,11 @@ class Employees(models.Model):
         :return: the employee for the logged in user
         :rtype: Employees
         """
-        return Employees.objects.get(login=request.user.username)
+        return Employees.objects.using(
+            request.parser_context.get('kwargs').get('project_id')
+        ).get(
+            login=request.user.username
+        )
 
 
 class WorkEffort(models.Model):
