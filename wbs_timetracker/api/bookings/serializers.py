@@ -1,6 +1,6 @@
 from core.api.serializers import BaseModelSerializer, ZeroTimeDateTimeField
 
-from data.legacy.project.models import WorkEffort
+from data.legacy.project.models import WorkEffort, Employees
 
 from api.projects.serializers import SubProjectHyperlinkedRelatedField
 from api.workpackages.serializers import WorkpackageHyperlinkedRelatedField
@@ -24,5 +24,12 @@ class WorkEffortSerializer(BaseModelSerializer):
         fields = ('effort', 'description', 'date', 'self', 'workpackage',)
 
     def create(self, validated_data):
-        # TODO implement create porperly
-        pass
+        request = self.context.get('request')
+
+        validated_data['employee'] = Employees.from_request(request)
+
+        return self.Meta.model.objects.using(
+            request.parser_context.get('kwargs').get('project_id')
+        ).create(
+            **validated_data
+        )
