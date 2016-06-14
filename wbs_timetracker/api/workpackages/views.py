@@ -37,7 +37,8 @@ class WorkpackagesModelViewSet(
     serializer_class = WorkpackageSerializer
 
     def get_queryset(self):
-        # TODO filter by logged in user
         return Workpackage.objects.using(
             self.kwargs.get('project_id')
+        ).filter(
+            allocated_employees__login=self.request.user.username
         )
