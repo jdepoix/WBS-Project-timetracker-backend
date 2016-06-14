@@ -1,11 +1,12 @@
-from rest_framework.viewsets import ModelViewSet
+from core.api.viewsets import EVAModelViewSet
 
 from data.legacy.project.models import WorkEffort
 
 from api.bookings.serializers import WorkEffortSerializer
 
 
-class BookingsModelViewSet(ModelViewSet):
+class BookingsModelViewSet(EVAModelViewSet):
+    # TODO filter by workpackage or date
     serializer_class = WorkEffortSerializer
 
     def get_queryset(self):
@@ -14,24 +15,3 @@ class BookingsModelViewSet(ModelViewSet):
         ).filter(
             employee__login=self.request.user.username
         )
-
-    def create(self, request, *args, **kwargs):
-        response = super(BookingsModelViewSet, self).create(request, *args, **kwargs)
-
-        # TODO EVA recalc
-
-        return response
-
-    def update(self, request, *args, **kwargs):
-        response = super(BookingsModelViewSet, self).update(request, *args, **kwargs)
-
-        # TODO EVA recalc
-
-        return response
-
-    def destroy(self, request, *args, **kwargs):
-        response = super(BookingsModelViewSet, self).destroy(request, *args, **kwargs)
-
-        # TODO EVA recalc
-
-        return response
