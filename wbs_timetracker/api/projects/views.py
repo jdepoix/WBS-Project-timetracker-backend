@@ -32,8 +32,10 @@ class ProjectsModelViewSet(
 
         show specific information about the project with the id <project_id>.
     """
-    queryset = DbIdentifier.objects.all()
     serializer_class = BaseModelSerializer.default_serializer_factory(DbIdentifier)
+
+    def get_queryset(self):
+        return self.request.user.wbs_user.projects.all()
 
     def create(self, request, *args, **kwargs):
         """

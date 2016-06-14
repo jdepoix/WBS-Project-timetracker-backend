@@ -9,7 +9,7 @@ from api.workpackages.views import WorkpackagesModelViewSet
 
 
 projects_router = DefaultRouter()
-projects_router.register(r'projects', ProjectsModelViewSet)
+projects_router.register(r'projects', ProjectsModelViewSet, base_name='dbidentifier')
 
 bookings_router = DefaultRouter()
 bookings_router.register(r'bookings', BookingsModelViewSet, base_name='workeffort')
