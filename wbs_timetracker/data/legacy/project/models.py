@@ -62,6 +62,11 @@ class Workpackage(models.Model):
     start_date_calc = models.DateTimeField(blank=True, null=True)
     start_date_wish = models.DateTimeField(blank=True, null=True)
     end_date_calc = models.DateTimeField(blank=True, null=True)
+    allocated_employees = models.ManyToManyField(
+        Employees,
+        through='WpAllocation',
+        related_name='allocated_workpackages'
+    )
 
     class Meta:
         managed = False
