@@ -22,3 +22,7 @@ class WorkEffortSerializer(BaseModelSerializer):
     class Meta:
         model = WorkEffort
         fields = ('effort', 'description', 'date', 'self', 'workpackage',)
+
+    def create(self, validated_data):
+        # TODO implement create porperly
+        pass
