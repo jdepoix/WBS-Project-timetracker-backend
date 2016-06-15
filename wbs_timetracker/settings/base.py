@@ -36,6 +36,8 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
+    'crispy_forms',
 ]
 
 INTERNAL_APPS = [
@@ -102,6 +104,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissions'
     ],
     'DATETIME_FORMAT': '%Y-%m-%d',
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
 }
 
 # Password validation
