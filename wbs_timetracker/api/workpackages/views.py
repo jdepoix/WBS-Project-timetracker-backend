@@ -34,6 +34,7 @@ class WorkpackagesModelViewSet(
             etc: <double>
         }
     """
+    # TODO implement and document filtering by inactive and toplevel
     serializer_class = WorkpackageSerializer
 
     def get_queryset(self):

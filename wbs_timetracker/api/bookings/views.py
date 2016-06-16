@@ -2,6 +2,7 @@ from core.api.viewsets import EVAModelViewSet
 
 from data.legacy.project.models import WorkEffort
 
+from api.bookings.filters import WorkEffortFilter
 from api.bookings.serializers import WorkEffortSerializer
 
 
@@ -48,8 +49,8 @@ class BookingsModelViewSet(EVAModelViewSet):
 
         deletes the booking with the id <booking_id>.
     """
-    # TODO filter by workpackage or date
     serializer_class = WorkEffortSerializer
+    filter_class = WorkEffortFilter
 
     def get_queryset(self):
         return WorkEffort.objects.using(
