@@ -27,19 +27,69 @@ Note that the setup scripts only supports Unix based OS'es.
   }
   ```
 
+```[GET]		users/(?(username))```
+- lists all users
+
+    ######PARAMS:
+	- `username`: <String>
+		filter by the users username. Note that usernames are unique.
+
+```[POST]		users/```
+- creates a new user
+
+    ######POST DATA:
+    ```js
+    {
+        /** new users username */
+        username: <String>,
+        /** new users password */
+        password: <String>
+    }
+    ```
+
+```[GET]		users/<user_id>/```
+- the user with the user id `<user_id>`.
+
+```[PATCH]		users/<user_id>/```
+- change password of the user with the user id `<user_id>`.
+
+    ######POST DATA:
+    ```js
+    {
+        /** the users old password */
+        oldPassword: <String>,
+        /** the users new password */
+        newPassword: <String>
+    }
+    ```
+
+```[GET]		users/<user_id>/projects/```
+- get all projects ot the user with the user id `<user_id>`.
+
+```[POST]		users/<user_id>/projects/```
+- add the user to an already existing project
+
+    ######POST DATA:
+    ```js
+    {
+        /** URL of the project you want the user to be added to */
+        project: <URL>
+    }
+    ```
+
 ```[GET]		booking-sessions/```
 - list the current booking session for the currently logged in user, in case there is an open session.
 
 ```[POST]		booking-sessions/```
 - open a new booking session for the currently logged in user.
 
-  ######POST DATA:
-  ```js
-  {
-  	/** timestamp of the beginning of the booking session */
-  	timestamp: <timestamp>
-  }
-  ```
+    ######POST DATA:
+    ```js
+    {
+        /** timestamp of the beginning of the booking session */
+        timestamp: <timestamp>
+    }
+    ```
 
 ```[DELETE]     booking-sessions/<booking_session_id>/```
 - close the booking session with the id `<booking_session_id>`.
