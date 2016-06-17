@@ -14,7 +14,9 @@ If you're deploying on a production system, execture `prod` instead. Also you sh
 
 Note that the setup scripts only supports Unix based OS'es.
 
-# Routes
+# API endpoints
+
+### Login
 
 ```[POST]		login/```
 - returns a authentication token, if correct credentials are supplied.
@@ -26,6 +28,8 @@ Note that the setup scripts only supports Unix based OS'es.
   	password: <String>
   }
   ```
+
+### Users
 
 ```[GET]		users/(?(username))```
 - lists all users
@@ -77,6 +81,8 @@ Note that the setup scripts only supports Unix based OS'es.
     }
     ```
 
+### Booking sessions
+
 ```[GET]		booking-sessions/```
 - list the current booking session for the currently logged in user, in case there is an open session.
 
@@ -94,6 +100,8 @@ Note that the setup scripts only supports Unix based OS'es.
 ```[DELETE]     booking-sessions/<booking_session_id>/```
 - close the booking session with the id `<booking_session_id>`.
 
+### Projects
+
 ```[GET]		projects/```
 - list all projects for the currently logged in user.
 
@@ -105,6 +113,8 @@ Note that the setup scripts only supports Unix based OS'es.
 
 ```[GET]		projects/<project_id>/```
 - show specific information about the project with the id `<project_id>`.
+
+### Bookings
 
 ```[GET]		projects/<project_id>/bookings/(?(date|workpackage_id))```
 - lists all bookings on this project.
@@ -141,6 +151,8 @@ Note that the setup scripts only supports Unix based OS'es.
 
 ```[DELETE]	    projects/<project_id>/bookings/<booking_id>/```
 - deletes the booking with the id `<booking_id>`.
+
+### Workpackages
 
 ```[GET]		projects/<project_id>/workpackages/(?(topleve_wp|inactive))```
 - lists all workpackages for the project with the id `<project_id>`.
