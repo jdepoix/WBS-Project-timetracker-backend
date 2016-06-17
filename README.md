@@ -81,12 +81,12 @@ Note that the setup scripts only supports Unix based OS'es.
     }
     ```
 
-### Booking sessions
+### Booking session
 
-```[GET]		booking-sessions/```
+```[GET]		booking-session/```
 - list the current booking session for the currently logged in user, in case there is an open session.
 
-```[POST]		booking-sessions/```
+```[POST]		booking-session/```
 - open a new booking session for the currently logged in user.
 
     ######POST DATA:
@@ -97,8 +97,8 @@ Note that the setup scripts only supports Unix based OS'es.
     }
     ```
 
-```[DELETE]     booking-sessions/<booking_session_id>/```
-- close the booking session with the id `<booking_session_id>`.
+```[DELETE]     booking-session/```
+- close the current booking session and make the booking
 
 ### Projects
 
