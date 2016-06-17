@@ -16,7 +16,7 @@ class BookingsModelViewSet(EVAModelViewSet):
 
         PARAMS:
         - date:
-            if date is set, only bookings from this date will be listed.
+            if date is set, only bookings from this date will be listed. Format: YYYY-MM-DD.
 
         - workpackage_id:
             if workpackage_id is set, only bookings on this workpackage will be listed.

@@ -5,6 +5,7 @@ from core.api.mixins import EVAUpdateModelMixin
 from data.legacy.project.models import Workpackage
 
 from api.workpackages.serializers import WorkpackageSerializer
+from api.workpackages.filters import WorkpackageFilter
 
 
 class WorkpackagesModelViewSet(
@@ -16,9 +17,16 @@ class WorkpackagesModelViewSet(
     """
     ### Endpoints:
 
-    ```[GET]		projects/<project_id>/workpackages/```
+    ```[GET]		projects/<project_id>/workpackages/(?(topleve_wp|inactive))```
 
         lists all workpackages for the project with the id <project_id>.
+
+        PARAMS:
+        - toplevel_wp: <boolean>
+            if true only toplevel workpackages are shown, if false only non toplevel workpackages.
+
+        - inactive: <boolean>
+            if true only inactive workpackages are shown, if false only active workpackages.
 
     ```[GET]		projects/<project_id>/workpackages/<workpackage_id>/```
 
@@ -34,8 +42,8 @@ class WorkpackagesModelViewSet(
             etc: <double>
         }
     """
-    # TODO implement and document filtering by inactive and toplevel
     serializer_class = WorkpackageSerializer
+    filter_class = WorkpackageFilter
 
     def get_queryset(self):
         return Workpackage.objects.using(

@@ -60,10 +60,10 @@ Note that the setup scripts only supports Unix based OS'es.
 - lists all bookings on this project.
 
 	######PARAMS:
-	- `date`:
-		if date is set, only bookings from this date will be listed.
+	- `date`: <date>
+		if date is set, only bookings from this date will be listed. Format: YYYY-MM-DD.
 
-	- `workpackage_id`:
+	- `workpackage_id`: <int>
 		if workpackage_id is set, only bookings on this workpackage will be listed.
 
 ```[POST]		projects/<project_id>/bookings/```
@@ -92,8 +92,15 @@ Note that the setup scripts only supports Unix based OS'es.
 ```[DELETE]	    projects/<project_id>/bookings/<booking_id>/```
 - deletes the booking with the id `<booking_id>`.
 
-```[GET]		projects/<project_id>/workpackages/```
+```[GET]		projects/<project_id>/workpackages/(?(topleve_wp|inactive))```
 - lists all workpackages for the project with the id `<project_id>`.
+
+    ######PARAMS:
+	- `toplevel_wp`: <boolean>
+		if true only toplevel workpackages are shown, if false only non toplevel workpackages.
+
+	- `inactive`: <boolean>
+		if true only inactive workpackages are shown, if false only active workpackages.
 
 ```[GET]		projects/<project_id>/workpackages/<workpackage_id>/```
 - lists specific information regarding the workpackage with the id `<workpackage_id>`.
