@@ -99,9 +99,12 @@ DATABASES = {
 
 # Django REST Framework
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissions'
+        'rest_framework.permissions.IsAuthenticated'
     ],
     'DATETIME_FORMAT': '%Y-%m-%d',
     'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
