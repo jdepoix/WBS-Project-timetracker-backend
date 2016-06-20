@@ -1,7 +1,9 @@
 from rest_framework import mixins, viewsets
 
 from core.api.permissions import IsAuthenticatedOrPostOnly
+from core.api.serializers import BaseModelSerializer
 
+from data.legacy.id_wbs.models import DbIdentifier
 from data.wbs_user.models import WbsUser
 
 from api.users.filters import WbsUserFilter
@@ -75,3 +77,65 @@ class WbsUserModelViewSet(
             return WbsUserUpdateSerializer
         else:
             return WbsUserSerializer
+
+
+class WbsUserProjectsModelViewSet(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    viewsets.GenericViewSet,
+):
+    """
+    ```[GET]		/api/users/(?(username))```
+
+        lists all users
+
+        PARAMS:
+        - username: <String>
+            filter by the users username. Note that usernames are unique.
+
+    ```[POST]		/api/users/```
+
+        creates a new user
+
+        POST DATA:
+        {
+            /** new users username */
+            username: <String>,
+            /** new users password */
+            password: <String>
+        }
+
+    ```[GET]		/api/users/<user_id>/```
+
+        the user with the user id `<user_id>`.
+
+    ```[PATCH]		/api/users/<user_id>/```
+
+        change password of the user with the user id `<user_id>`.
+
+        POST DATA:
+        {
+            /** the users old password */
+            oldPassword: <String>,
+            /** the users new password */
+            newPassword: <String>
+        }
+
+    ```[GET]		/api/users/<user_id>/projects/```
+
+        get all projects ot the user with the user id `<user_id>`.
+
+    ```[POST]		/api/users/<user_id>/projects/```
+
+        add the user to an already existing project
+
+        POST DATA:
+        {
+            /** URL of the project you want the user to be added to */
+            project: <URL>
+        }
+    """
+    serializer_class = BaseModelSerializer.default_serializer_factory(DbIdentifier)
+
+    def get_queryset(self):
+        return WbsUser.objects.get(pk=self.kwargs.get('user_id')).projects.all()
