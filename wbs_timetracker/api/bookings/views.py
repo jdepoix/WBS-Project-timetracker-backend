@@ -10,7 +10,7 @@ class BookingsModelViewSet(EVAModelViewSet):
     """
     ### Endpoints:
 
-    ```[GET]		projects/<project_id>/bookings/(?(date|workpackage_id))```
+    ```[GET]		/api/projects/<project_id>/bookings/(?(date|workpackage_id))```
 
         lists all bookings on this project.
 
@@ -21,7 +21,7 @@ class BookingsModelViewSet(EVAModelViewSet):
         - workpackage_id:
             if workpackage_id is set, only bookings on this workpackage will be listed.
 
-    ```[POST]		projects/<project_id>/bookings/```
+    ```[POST]		/api/projects/<project_id>/bookings/```
 
         creates a new booking.
 
@@ -37,15 +37,15 @@ class BookingsModelViewSet(EVAModelViewSet):
             description: <String>
         }
 
-    ```[GET]		projects/<project_id>/bookings/<booking_id>/```
+    ```[GET]		/api/projects/<project_id>/bookings/<booking_id>/```
 
         lists all information regarding the booking with the booking id <booking_id>.
 
-    ```[PATCH]		projects/<project_id>/bookings/<booking_id>/```
+    ```[PATCH]		/api/projects/<project_id>/bookings/<booking_id>/```
 
         updates the booking with the id `<booking_id>`. Data format is the same as for POSTs.
 
-    ```[DELETE]	    projects/<project_id>/bookings/<booking_id>/```
+    ```[DELETE]	    /api/projects/<project_id>/bookings/<booking_id>/```
 
         deletes the booking with the id <booking_id>.
     """

@@ -17,18 +17,18 @@ class ProjectsModelViewSet(
     """
     ### Endpoints:
 
-    ```[GET]		projects/```
+    ```[GET]		/api/projects/```
 
         list all projects for the currently logged in user.
 
-    ```[POST]		projects/```
+    ```[POST]		/api/projects/```
 
         this endpoint is called, when a new project is created by the FAT-Client. It doesn't actually create a new project, it is just needed to update the backend, due to crappy legacy code.
 
         POST DATA:
         no post data is needed, since the information is already in the database.
 
-    ```[GET]		projects/<project_id>/```
+    ```[GET]		/api/projects/<project_id>/```
 
         show specific information about the project with the id <project_id>.
     """

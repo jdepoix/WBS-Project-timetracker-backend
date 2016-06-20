@@ -17,7 +17,7 @@ class WorkpackagesModelViewSet(
     """
     ### Endpoints:
 
-    ```[GET]		projects/<project_id>/workpackages/(?(topleve_wp|inactive))```
+    ```[GET]		/api/projects/<project_id>/workpackages/(?(topleve_wp|inactive))```
 
         lists all workpackages for the project with the id <project_id>.
 
@@ -28,11 +28,11 @@ class WorkpackagesModelViewSet(
         - inactive: <boolean>
             if true only inactive workpackages are shown, if false only active workpackages.
 
-    ```[GET]		projects/<project_id>/workpackages/<workpackage_id>/```
+    ```[GET]		/api/projects/<project_id>/workpackages/<workpackage_id>/```
 
         lists specific information regarding the workpackage with the id <workpackage_id>.
 
-    ```[PATCH]		projects/<project_id>/workpackages/<workpackage_id>/```
+    ```[PATCH]		/api/projects/<project_id>/workpackages/<workpackage_id>/```
 
         update the ETC of the workpackage with the id <workpackage_id>.
 
