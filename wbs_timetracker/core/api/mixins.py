@@ -1,6 +1,8 @@
 from rest_framework import mixins
 
 
+# TODO find abstract solution for getting the workpackage the change emits from
+
 class ViewSetEVACalculationManager(object):
     """
     manages starting the eva recalculation from a viewset request
