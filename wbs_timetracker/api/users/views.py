@@ -5,7 +5,7 @@ from core.api.permissions import IsAuthenticatedOrPostOnly
 from data.wbs_user.models import WbsUser
 
 from api.users.filters import WbsUserFilter
-from api.users.serializers import WbsUserSerializer
+from api.users.serializers import WbsUserSerializer, WbsUserUpdateSerializer
 
 
 class WbsUserModelViewSet(
@@ -15,11 +15,12 @@ class WbsUserModelViewSet(
     mixins.UpdateModelMixin,
     viewsets.GenericViewSet,
 ):
-    serializer_class = WbsUserSerializer
     filter_class = WbsUserFilter
     permission_classes = (IsAuthenticatedOrPostOnly,)
     queryset = WbsUser.objects.all()
 
-    def update(self, request, *args, **kwargs):
-        # TODO update user
-        pass
+    def get_serializer_class(self):
+        if self.action == 'update':
+            return WbsUserUpdateSerializer
+        else:
+            return WbsUserSerializer

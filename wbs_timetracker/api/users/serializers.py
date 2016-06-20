@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 
 from rest_framework import serializers
+from rest_framework.exceptions import AuthenticationFailed
 
 from core.api.serializers import BaseModelSerializer
 
@@ -22,3 +23,21 @@ class WbsUserSerializer(BaseModelSerializer):
             username=validated_data.get('user').get('username'),
             password=validated_data.get('password')
         ).wbs_user
+
+
+class WbsUserUpdateSerializer(BaseModelSerializer):
+    oldPassword = serializers.CharField(write_only=True)
+    newPassword = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = WbsUser
+        fields = ('oldPassword', 'newPassword',)
+
+    def update(self, instance, validated_data):
+        if instance.check_password(validated_data.get('oldPassword')):
+           instance.set_password(validated_data.get('newPassword'))
+           instance.save()
+
+           return instance.wbs_user
+
+        raise AuthenticationFailed
