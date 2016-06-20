@@ -20,10 +20,6 @@ class WbsUserModelViewSet(
     permission_classes = (IsAuthenticatedOrPostOnly,)
     queryset = WbsUser.objects.all()
 
-    def create(self, request, *args, **kwargs):
-        # TODO create user
-        pass
-
     def update(self, request, *args, **kwargs):
         # TODO update user
         pass
