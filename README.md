@@ -18,7 +18,7 @@ Note that the setup scripts only supports Unix based OS'es.
 
 ### Login
 
-```[POST]		login/```
+```[POST]		/api/login/```
 - returns a authentication token, if correct credentials are supplied.
 
   ######POST DATA:
@@ -29,16 +29,18 @@ Note that the setup scripts only supports Unix based OS'es.
   }
   ```
 
+- following request can be authenticated by adding "Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b" to the header
+
 ### Users
 
-```[GET]		users/(?(username))```
+```[GET]		/api/users/(?(username))```
 - lists all users
 
     ######PARAMS:
 	- `username`: <String>
 		filter by the users username. Note that usernames are unique.
 
-```[POST]		users/```
+```[POST]		/api/users/```
 - creates a new user
 
     ######POST DATA:
@@ -51,10 +53,10 @@ Note that the setup scripts only supports Unix based OS'es.
     }
     ```
 
-```[GET]		users/<user_id>/```
+```[GET]		/api/users/<user_id>/```
 - the user with the user id `<user_id>`.
 
-```[PATCH]		users/<user_id>/```
+```[PATCH]		/api/users/<user_id>/```
 - change password of the user with the user id `<user_id>`.
 
     ######POST DATA:
@@ -67,10 +69,10 @@ Note that the setup scripts only supports Unix based OS'es.
     }
     ```
 
-```[GET]		users/<user_id>/projects/```
+```[GET]		/api/users/<user_id>/projects/```
 - get all projects ot the user with the user id `<user_id>`.
 
-```[POST]		users/<user_id>/projects/```
+```[POST]		/api/users/<user_id>/projects/```
 - add the user to an already existing project
 
     ######POST DATA:
@@ -83,10 +85,10 @@ Note that the setup scripts only supports Unix based OS'es.
 
 ### Booking session
 
-```[GET]		booking-session/```
+```[GET]		/api/booking-session/```
 - list the current booking session for the currently logged in user, in case there is an open session.
 
-```[POST]		booking-session/```
+```[POST]		/api/booking-session/```
 - open a new booking session for the currently logged in user.
 
     ######POST DATA:
@@ -97,26 +99,26 @@ Note that the setup scripts only supports Unix based OS'es.
     }
     ```
 
-```[DELETE]     booking-session/```
+```[DELETE]     /api/booking-session/```
 - close the current booking session and make the booking
 
 ### Projects
 
-```[GET]		projects/```
+```[GET]		/api/projects/```
 - list all projects for the currently logged in user.
 
-```[POST]		projects/```
+```[POST]		/api/projects/```
 - this endpoint is called, when a new project is created by the FAT-Client. It doesn't actually create a new project, it is just needed to update the backend, due to crappy legacy code.
 
     ######POST DATA:
 	no post data is needed, since the information is already in the database.
 
-```[GET]		projects/<project_id>/```
+```[GET]		/api/projects/<project_id>/```
 - show specific information about the project with the id `<project_id>`.
 
 ### Bookings
 
-```[GET]		projects/<project_id>/bookings/(?(date|workpackage_id))```
+```[GET]		/api/projects/<project_id>/bookings/(?(date|workpackage_id))```
 - lists all bookings on this project.
 
 	######PARAMS:
@@ -126,7 +128,7 @@ Note that the setup scripts only supports Unix based OS'es.
 	- `workpackage_id`: <int>
 		if workpackage_id is set, only bookings on this workpackage will be listed.
 
-```[POST]		projects/<project_id>/bookings/```
+```[POST]		/api/projects/<project_id>/bookings/```
 - creates a new booking.
 
 	######POST DATA:
@@ -143,18 +145,18 @@ Note that the setup scripts only supports Unix based OS'es.
 	}
 	```
 
-```[GET]		projects/<project_id>/bookings/<booking_id>/```
+```[GET]		/api/projects/<project_id>/bookings/<booking_id>/```
 - lists all information regarding the booking with the booking id `<booking_id>`.
 
-```[PATCH]		projects/<project_id>/bookings/<booking_id>/```
+```[PATCH]		/api/projects/<project_id>/bookings/<booking_id>/```
 - updates the booking with the id `<booking_id>`. Data format is the same as for POSTs.
 
-```[DELETE]	    projects/<project_id>/bookings/<booking_id>/```
+```[DELETE]	    /api/projects/<project_id>/bookings/<booking_id>/```
 - deletes the booking with the id `<booking_id>`.
 
 ### Workpackages
 
-```[GET]		projects/<project_id>/workpackages/(?(topleve_wp|inactive))```
+```[GET]		/api/projects/<project_id>/workpackages/(?(topleve_wp|inactive))```
 - lists all workpackages for the project with the id `<project_id>`.
 
     ######PARAMS:
@@ -164,10 +166,10 @@ Note that the setup scripts only supports Unix based OS'es.
 	- `inactive`: <boolean>
 		if true only inactive workpackages are shown, if false only active workpackages.
 
-```[GET]		projects/<project_id>/workpackages/<workpackage_id>/```
+```[GET]		/api/projects/<project_id>/workpackages/<workpackage_id>/```
 - lists specific information regarding the workpackage with the id `<workpackage_id>`.
 
-```[PATCH]		projects/<project_id>/workpackages/<workpackage_id>/```
+```[PATCH]		/api/projects/<project_id>/workpackages/<workpackage_id>/```
 - update the ETC of the workpackage with the id `<workpackage_id>`.
 
 	######PATCH DATA:
