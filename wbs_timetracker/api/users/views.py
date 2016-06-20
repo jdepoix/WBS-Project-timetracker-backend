@@ -1,13 +1,11 @@
 from rest_framework import mixins, viewsets
 
 from core.api.permissions import IsAuthenticatedOrPostOnly
-from core.api.serializers import BaseModelSerializer
 
-from data.legacy.id_wbs.models import DbIdentifier
 from data.wbs_user.models import WbsUser
 
 from api.users.filters import WbsUserFilter
-from api.users.serializers import WbsUserSerializer, WbsUserUpdateSerializer
+from api.users.serializers import WbsUserSerializer, WbsUserUpdateSerializer, WbsUserProjectSerializer
 
 
 class WbsUserModelViewSet(
@@ -18,6 +16,8 @@ class WbsUserModelViewSet(
     viewsets.GenericViewSet,
 ):
     """
+    ### Endpoints:
+
     ```[GET]		/api/users/(?(username))```
 
         lists all users
@@ -85,6 +85,8 @@ class WbsUserProjectsModelViewSet(
     viewsets.GenericViewSet,
 ):
     """
+    ### Endpoints:
+
     ```[GET]		/api/users/(?(username))```
 
         lists all users
@@ -135,7 +137,16 @@ class WbsUserProjectsModelViewSet(
             project: <URL>
         }
     """
-    serializer_class = BaseModelSerializer.default_serializer_factory(DbIdentifier)
+    serializer_class = WbsUserProjectSerializer
+
+    def get_user_from_url(self):
+        """
+        retrieves the WbsUser from the url
+
+        :return: the user
+        :rtype: WbsUser
+        """
+        return WbsUser.objects.get(pk=self.kwargs.get('user_id'))
 
     def get_queryset(self):
-        return WbsUser.objects.get(pk=self.kwargs.get('user_id')).projects.all()
+        return self.get_user_from_url().projects.all()

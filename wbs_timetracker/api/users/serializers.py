@@ -41,3 +41,19 @@ class WbsUserUpdateSerializer(BaseModelSerializer):
            return instance.wbs_user
 
         raise AuthenticationFailed
+
+
+class WbsUserProjectSerializer(BaseModelSerializer):
+    db = serializers.CharField(read_only=True)
+    project = serializers.HyperlinkedRelatedField(view_name='dbidentifier-detail', write_only=True, queryset=DbIdentifier.objects.all())
+
+    class Meta:
+        model = DbIdentifier
+        fields = ('self', 'db', 'project',)
+
+    def create(self, validated_data):
+        WbsUser.objects.get(
+            pk=self.context.get('request').parser_context.get('kwargs').get('user_id')
+        ).projects.add(validated_data.get('project'))
+
+        return validated_data.get('project')
