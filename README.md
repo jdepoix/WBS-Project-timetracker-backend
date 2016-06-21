@@ -94,13 +94,16 @@ Note that the setup scripts only supports Unix based OS'es.
     ######POST DATA:
     ```js
     {
-        /** timestamp of the beginning of the booking session */
-        timestamp: <timestamp>
+        /** the URL to the workpackage ressource, this is booking is for **/
+        workpackage: <URL>
     }
     ```
 
+```[GET]		/api/booking-session/<booking_session_id>/```
+- lists the booking session with the id `bookings_session_id`.
+
 ```[DELETE]     /api/booking-session/```
-- close the current booking session and make the booking
+- closes the current booking session with the id `bookings_session_id` and creates a corresponding booking
 
 ### Projects
 
