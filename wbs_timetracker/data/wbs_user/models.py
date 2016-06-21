@@ -18,7 +18,7 @@ class BookingSession(models.Model):
 
     @property
     def workpackage(self):
-        return Workpackage.object.using(str(self.db.id)).get(pk=self.workpackage_id)
+        return Workpackage.objects.using(str(self.db.id)).get(pk=self.workpackage_id)
 
 
 class WbsUser(models.Model):
