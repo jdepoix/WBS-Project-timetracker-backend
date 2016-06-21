@@ -14,7 +14,7 @@ class BookingSession(models.Model):
     workpackage_id = models.IntegerField()
     db = models.ForeignKey(DbIdentifier)
     user = models.OneToOneField('WbsUser', related_name='booking_session', on_delete=models.DO_NOTHING)
-    start_time = models.DateTimeField()
+    start_time = models.DateTimeField(auto_now_add=True)
 
     @property
     def workpackage(self):
