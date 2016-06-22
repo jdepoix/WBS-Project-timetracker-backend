@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 
 from rest_framework import serializers
-from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.exceptions import AuthenticationFailed, PermissionDenied
 
 from core.api.serializers import BaseModelSerializer
 
@@ -19,6 +19,9 @@ class WbsUserSerializer(BaseModelSerializer):
         fields = ('self', 'username', 'projects', 'password',)
 
     def create(self, validated_data):
+        if User.objects.filter(username=validated_data.get('user').get('username')).exists():
+            raise PermissionDenied(detail='User already exists')
+
         return User.objects.create_user(
             username=validated_data.get('user').get('username'),
             password=validated_data.get('password')
