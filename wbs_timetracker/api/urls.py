@@ -7,11 +7,13 @@ from api.projects.views import ProjectsModelViewSet
 from api.bookings.views import BookingsModelViewSet
 from api.workpackages.views import WorkpackagesModelViewSet
 from api.users.views import WbsUserModelViewSet, WbsUserProjectsModelViewSet
+from api.booking_session.views import BookingSessionsModelViewSet
 
 
 base_router = DefaultRouter()
 base_router.register(r'projects', ProjectsModelViewSet, base_name='dbidentifier')
 base_router.register(r'users', WbsUserModelViewSet, base_name='wbsuser')
+base_router.register(r'booking-session', BookingSessionsModelViewSet, base_name='bookingsession')
 
 bookings_router = DefaultRouter()
 bookings_router.register(r'bookings', BookingsModelViewSet, base_name='workeffort')

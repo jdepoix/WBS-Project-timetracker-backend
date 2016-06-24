@@ -85,10 +85,10 @@ Note that the setup scripts only supports Unix based OS'es.
 
 ### Booking session
 
-```[GET]		/api/booking-session/```
+```[GET]		/api/booking-sessions/```
 - list the current booking session for the currently logged in user, in case there is an open session.
 
-```[POST]		/api/booking-session/```
+```[POST]		/api/booking-sessions/```
 - open a new booking session for the currently logged in user.
 
     ######POST DATA:
@@ -99,10 +99,10 @@ Note that the setup scripts only supports Unix based OS'es.
     }
     ```
 
-```[GET]		/api/booking-session/<booking_session_id>/```
+```[GET]		/api/booking-sessions/<booking_session_id>/```
 - lists the booking session with the id `bookings_session_id`.
 
-```[DELETE]     /api/booking-session/```
+```[DELETE]     /api/booking-sessions/<booking_session_id>/```
 - closes the current booking session with the id `bookings_session_id` and creates a corresponding booking
 
 ### Projects
