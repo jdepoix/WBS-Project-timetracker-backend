@@ -1,4 +1,6 @@
-from core.api.viewsets import EVAModelViewSet
+from rest_framework import mixins, viewsets
+
+from core.api.mixins import EVAUpdateModelMixin, EVADestroyModelMixin
 
 from data.legacy.project.models import WorkEffort
 
@@ -6,7 +8,14 @@ from api.bookings.filters import WorkEffortFilter
 from api.bookings.serializers import WorkEffortSerializer
 
 
-class BookingsModelViewSet(EVAModelViewSet):
+class BookingsModelViewSet(
+    mixins.CreateModelMixin,
+    EVAUpdateModelMixin,
+    EVADestroyModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.ListModelMixin,
+    viewsets.GenericViewSet
+):
     """
     ### Endpoints:
 
@@ -58,3 +67,13 @@ class BookingsModelViewSet(EVAModelViewSet):
         ).filter(
             employee__login=self.request.user.username
         )
+
+    def get_workpackage(self, request, *args, **kwargs):
+        return self.get_queryset().get(pk=self.kwargs.get('pk')).workpackage
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+        workpackage = serializer.instance.workpackage
+        workpackage.etc -= serializer.instance.effort
+        self.recalc_eva_values(workpackage)
