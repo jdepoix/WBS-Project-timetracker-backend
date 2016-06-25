@@ -3,21 +3,6 @@ from abc import ABCMeta, abstractmethod
 from rest_framework import mixins
 
 
-class ViewSetEVACalculationManager(object):
-    """
-    manages starting the eva recalculation from a viewset request
-    """
-    # TODO probably replace this as soon as EVA module is done
-    @staticmethod
-    def recalc_eva_values(workpackage):
-        """
-        :param workpackage:
-        :return:
-        """
-        # TODO EVA recalc
-        pass
-
-
 class EVARecalcMixin(object):
     """
     every class implementing this mixin need to supply a method, which allows retrieving the regarding workpackage
@@ -45,7 +30,9 @@ class EVARecalcMixin(object):
         :param args:
         :param kwargs:
         """
-        ViewSetEVACalculationManager.recalc_eva_values(self.get_workpackage(request, *args, **kwargs))
+        # TODO: trigger EVA recalc here
+        # ViewSetEVACalculationManager.recalc_eva_values(self.get_workpackage(request, *args, **kwargs))
+        pass
 
 
 class EVACreateModelMixin(mixins.CreateModelMixin, EVARecalcMixin):
