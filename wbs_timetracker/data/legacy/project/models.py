@@ -77,6 +77,9 @@ class Workpackage(models.Model):
         db_table = 'workpackage'
         unique_together = (('parent', 'parent_order_id'), ('string_id', 'fid_project'),)
 
+    def __unicode__(self):
+        return '{string_id} {workpackage_name}'.format(string_id=self.string_id, workpackage_name=self.name)
+
 
 class WpAllocation(models.Model):
     workpackage = models.ForeignKey(Workpackage, models.DO_NOTHING, db_column='fid_wp')
