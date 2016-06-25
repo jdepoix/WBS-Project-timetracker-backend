@@ -22,13 +22,21 @@ class EVARecalcMixin(object):
         """
         pass
 
-    def recalc_eva_values(self, request, *args, **kwargs):
+    def recalc_eva_values_from_request(self, request, *args, **kwargs):
         """
-        triggers the recalculation of the eva values
+        triggers the recalculation of the eva values, taking a request
 
         :param request:
         :param args:
         :param kwargs:
+        """
+        self.recalc_eva_values(self.get_workpackage(request, *args, **kwargs))
+
+    def recalc_eva_values(self, workpackage):
+        """
+        triggers the recalculation of the eva values
+
+        :param workpackage:
         """
         # TODO: trigger EVA recalc here
         # ViewSetEVACalculationManager.recalc_eva_values(self.get_workpackage(request, *args, **kwargs))
@@ -44,7 +52,7 @@ class EVACreateModelMixin(mixins.CreateModelMixin, EVARecalcMixin):
     def create(self, request, *args, **kwargs):
         response = super(EVACreateModelMixin, self).create(request, *args, **kwargs)
 
-        self.recalc_eva_values(self, request, *args, **kwargs)
+        self.recalc_eva_values_from_request(self, request, *args, **kwargs)
 
         return response
 
@@ -58,7 +66,7 @@ class EVAUpdateModelMixin(mixins.UpdateModelMixin, EVARecalcMixin):
     def update(self, request, *args, **kwargs):
         response = super(EVAUpdateModelMixin, self).update(request, *args, **kwargs)
 
-        self.recalc_eva_values(self, request, *args, **kwargs)
+        self.recalc_eva_values_from_request(self, request, *args, **kwargs)
 
         return response
 
@@ -72,6 +80,6 @@ class EVADestroyModelMixin(mixins.DestroyModelMixin, EVARecalcMixin):
     def destroy(self, request, *args, **kwargs):
         response = super(EVADestroyModelMixin, self).destroy(request, *args, **kwargs)
 
-        self.recalc_eva_values(self, request, *args, **kwargs)
+        self.recalc_eva_values_from_request(self, request, *args, **kwargs)
 
         return response
