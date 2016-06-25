@@ -103,8 +103,8 @@ Note that the setup scripts only supports Unix based OS'es.
 - lists the booking session with the id `bookings_session_id`.
 
 ```[DELETE]     /api/booking-sessions/<booking_session_id>/```
-- closes the current booking session with the id `bookings_session_id` and creates a corresponding booking
-
+- closes the current booking session with the id `bookings_session_id. But be aware that this doesn't create a new Booking, which has to be done manually using the booking endpoints.
+``
 ### Projects
 
 ```[GET]		/api/projects/```
