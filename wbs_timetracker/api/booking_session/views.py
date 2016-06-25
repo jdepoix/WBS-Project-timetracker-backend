@@ -1,5 +1,7 @@
 from rest_framework import mixins, viewsets
 
+from core.api.mixins import EVADestroyModelMixin
+
 from data.wbs_user.models import BookingSession
 
 from api.booking_session.serializers import BookingSessionSerializer, BookingSessionCreateSerializer
@@ -33,7 +35,7 @@ class BookingSessionsModelViewSet(
 
     ```[DELETE]     booking-sessions/<booking_session_id>/```
 
-        closes the current booking session with the id bookings_session_id and creates a corresponding booking
+        closes the current booking session with the id bookings_session_id. But be aware that this doesn't create a Booking, which has to be done manually using the booking endpoints.
     """
     def get_serializer_class(self):
         if self.action == 'create':
@@ -43,7 +45,3 @@ class BookingSessionsModelViewSet(
 
     def get_queryset(self):
         return BookingSession.objects.filter(user=self.request.user.wbs_user)
-
-    def destroy(self, request, *args, **kwargs):
-        #TODO implement booking
-        pass
