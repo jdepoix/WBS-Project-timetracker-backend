@@ -40,7 +40,7 @@ class EVARecalcMixin(object):
         """
         # TODO: trigger EVA recalc here
         # ViewSetEVACalculationManager.recalc_eva_values(self.get_workpackage(request, *args, **kwargs))
-        pass
+        workpackage.save()
 
 
 class EVACreateModelMixin(mixins.CreateModelMixin, EVARecalcMixin):
@@ -78,8 +78,10 @@ class EVADestroyModelMixin(mixins.DestroyModelMixin, EVARecalcMixin):
     __metaclass__ = ABCMeta
 
     def destroy(self, request, *args, **kwargs):
+        workpackage = self.get_workpackage(request, *args, **kwargs)
+
         response = super(EVADestroyModelMixin, self).destroy(request, *args, **kwargs)
 
-        self.recalc_eva_values_from_request(self, request, *args, **kwargs)
+        self.recalc_eva_values(workpackage)
 
         return response
