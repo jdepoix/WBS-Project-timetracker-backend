@@ -51,3 +51,6 @@ class WorkpackagesModelViewSet(
         ).filter(
             allocated_employees__login=self.request.user.username
         )
+
+    def get_workpackage(self, request, *args, **kwargs):
+        return self.get_queryset().get(pk=self.kwargs.get('pk'))
