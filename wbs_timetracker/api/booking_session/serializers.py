@@ -40,8 +40,8 @@ class BookingSessionCreateSerializer(BookingSessionSerializer):
         try:
             project_id = kwargs['project_id']
 
-            workpackage = Workpackage.objects.using(project_id).get(pk=kwargs['pk'])
             project = DbIdentifier.objects.get(pk=project_id)
+            workpackage = Workpackage.objects.using(project_id).get(pk=kwargs['pk'])
         except (Workpackage.DoesNotExist, DbIdentifier.DoesNotExist, KeyError):
             raise NotFound('Workpackage wasn\'t found!')
 
