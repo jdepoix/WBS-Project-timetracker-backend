@@ -1,7 +1,5 @@
 from rest_framework import mixins, viewsets
 
-from core.api.mixins import EVADestroyModelMixin
-
 from data.wbs_user.models import BookingSession
 
 from api.booking_session.serializers import BookingSessionSerializer, BookingSessionCreateSerializer
