@@ -45,7 +45,11 @@ class EVACalculation(object):
         :type workpackage: Workpackage
         """
         self._calculate_workpackage(initial_workpackage)
-        self._calculate_all_workpackages(self.workpackage_cache.id_map.get(initial_workpackage.parent_id))
+
+        parent = self.workpackage_cache.id_map.get(initial_workpackage.parent_id)
+
+        if parent:
+            self._calculate_all_workpackages(parent)
 
     def _calculate_unkown_workpackage(self, workpackage):
         """
@@ -96,4 +100,6 @@ class EVACalculation(object):
         :return: workpackages AC
         :rtype: float
         """
-        pass
+        return sum(
+            [work_effort.effort for work_effort in self.work_effort_cache.workpackage_id_map.get(workpackage.id)]
+        )
