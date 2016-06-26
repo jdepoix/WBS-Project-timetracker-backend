@@ -144,7 +144,9 @@ Note that the setup scripts only supports Unix based OS'es.
 		/** the workeffort in workdays (8h) */
 		effort: <double>,
 		/** the description of what was done */
-		description: <String>
+		description: <String>,
+	    /** OPTIONAL: the new ETC for the corresponding workpackage. If this isn't set, the ETC will be set to the old ETC - effort */
+        newETC: <double>
 	}
 	```
 
