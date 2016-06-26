@@ -1,3 +1,4 @@
+from rest_framework import serializers
 from rest_framework.exceptions import ParseError
 
 from core.api.serializers import BaseModelSerializer, ZeroTimeDateTimeField
@@ -20,10 +21,11 @@ class WorkEffortSerializer(BaseModelSerializer):
     self = BookingsHyperlinkedRelatedField(read_only=True, source='*')
     workpackage = WorkpackageHyperlinkedRelatedField()
     date = ZeroTimeDateTimeField(source='rec_date')
+    newETC = serializers.FloatField(write_only=True, required=False)
 
     class Meta:
         model = WorkEffort
-        fields = ('effort', 'description', 'date', 'self', 'workpackage',)
+        fields = ('effort', 'description', 'date', 'self', 'workpackage', 'newETC',)
 
     def create(self, validated_data):
         workpackage = validated_data.get('workpackage')
@@ -37,6 +39,9 @@ class WorkEffortSerializer(BaseModelSerializer):
         request = self.context.get('request')
 
         validated_data['employee'] = Employees.from_request(request)
+
+        if 'newETC' in validated_data:
+            del validated_data['newETC']
 
         return self.Meta.model.objects.using(
             request.parser_context.get('kwargs').get('project_id')

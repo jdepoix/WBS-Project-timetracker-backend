@@ -77,5 +77,6 @@ class BookingsModelViewSet(
         serializer.save()
 
         workpackage = serializer.instance.workpackage
-        workpackage.etc -= serializer.instance.effort
+        workpackage.etc = serializer.initial_data.get('newETC', workpackage.etc - serializer.instance.effort)
+
         self.recalc_eva_values(workpackage)
