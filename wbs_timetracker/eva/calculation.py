@@ -11,10 +11,14 @@ class EVACalculation(object):
     workpackages
     """
     def __init__(self, initial_workpackage):
+        """
+        :param initial_workpackage: the workpackages the changes emit from
+        :type initial_workpackage: Workpackage
+        """
         self.initial_workpackage = initial_workpackage
         """the workpackage the changes emit from"""
 
-        self.changed_workpackages = [self.initial_workpackage,]
+        self.calculated_workpackages = []
         """holds the workpackages which have been changed"""
 
         # setup QuerysetCache
@@ -22,14 +26,74 @@ class EVACalculation(object):
         self.work_effort_cache = QuerysetCache(WorkEffort.objects.using(self.initial_workpackage._state.db).all())
 
         # setup attribute maps
-        self.workpackage_cache.map_by_attribute('pk')
+        self.workpackage_cache.map_by_attribute('id', unique=True)
+        self.workpackage_cache.map_by_attribute('parent_id')
         self.work_effort_cache.map_by_attribute('workpackage_id')
 
-    def _save_changed_workpackages(self):
+    def calculate(self):
         """
-        Saves the workpackages which have been changed. This is done in an atomic transaction, to avoid multiple
+        Calculates the EVA values starting with the given initial workpackage and saves the changes
+        """
+        self._calculate_all_workpackages(self.initial_workpackage)
+        self._save_calculated_workpackages()
+
+    def _calculate_all_workpackages(self, initial_workpackage):
+        """
+        Calculates the given initial workpackage and all direct and indirect parent workpackages
+
+        :param initial_workpackage: the initial workpackage
+        :type workpackage: Workpackage
+        """
+        self._calculate_workpackage(initial_workpackage)
+        self._calculate_all_workpackages(self.workpackage_cache.id_map.get(initial_workpackage.parent_id))
+
+    def _calculate_unkown_workpackage(self, workpackage):
+        """
+        Calculates a workpackage without knowing whether it is a toplevel workpackage or not
+        :param workpackage: the workpackage to calculate
+        :type workpackage: Workpackage
+        """
+        if workpackage.is_toplevel_wp:
+            self._calculate_toplevel_workpackage(workpackage)
+        else:
+            self._calculate_workpackage(workpackage)
+
+        self.calculated_workpackages.append(workpackage)
+
+    def _calculate_workpackage(self, workpackage):
+        """
+        Calculates a non toplevel workpackage
+
+        :param workpackage: the workpackage to calculate
+        :type workpackage: Workpackage
+        """
+        pass
+
+    def _calculate_toplevel_workpackage(self, workpackage):
+        """
+        Calculates a toplevel workpackage
+
+        :param workpackage: the workpackage to calculate
+        :type workpackage: Workpackage
+        """
+        pass
+
+    def _save_calculated_workpackages(self):
+        """
+        Saves the workpackages which have been calculated. This is done in an atomic transaction, to avoid multiple
         requests.
         """
         with atomic():
-            for workpackage in self.changed_workpackages:
+            for workpackage in self.calculated_workpackages:
                 workpackage.save()
+
+    def _get_workpackage_cached_ac(self, workpackage):
+        """
+        Returns the AC of a workpackage, calculated using the cached WorkEfforts
+
+        :param workpackage: the workpackage to calculate
+        :type workpackage: Workpackage
+        :return: workpackages AC
+        :rtype: float
+        """
+        pass
