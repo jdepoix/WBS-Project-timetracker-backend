@@ -41,7 +41,7 @@ class WorkEffortSerializer(BaseModelSerializer):
         validated_data['employee'] = Employees.from_request(request)
 
         if 'newETC' in validated_data:
-            del validated_data['newETC']
+            validated_data.pop('newETC')
 
         return self.Meta.model.objects.using(
             request.parser_context.get('kwargs').get('project_id')
