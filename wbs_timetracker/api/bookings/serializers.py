@@ -33,7 +33,11 @@ class WorkEffortSerializer(BaseModelSerializer):
         if workpackage.is_toplevel_wp:
             raise ParseError('Can\'t book on toplevel workpackage!')
 
-        if workpackage.etc - validated_data.get('effort') < 0:
+        if (
+            not validated_data.get('newETC') and workpackage.etc - validated_data.get('effort') < 0
+                or
+            validated_data.get('newETC') and validated_data.get('newETC') - validated_data.get('effort') < 0
+        ):
             raise ParseError('This booking would bring the ETC below 0, which is not allowed!')
 
         request = self.context.get('request')
