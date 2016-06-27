@@ -4,6 +4,7 @@ from core.queryset_cache import QuerysetCache
 
 from data.legacy.project.models import Workpackage, WorkEffort, Employees
 
+
 class CalculatableWorkpackage(object):
     """
     Wraps a Workpackage and adds additional functionality needed to calculate the earned value analysis values
