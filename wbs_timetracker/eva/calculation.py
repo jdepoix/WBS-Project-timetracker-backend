@@ -65,7 +65,7 @@ class CalculatableWorkpackage(object):
         :return: completion status, ranging from 0 to 1
         :rtype: float
         """
-        return self.workpackage.ac / self.workpackage.eac
+        return self.workpackage.ac / (self.workpackage.etc + self.workpackage.ac)
 
     def _calculate_cached_ac(self):
         """
@@ -165,13 +165,10 @@ class EVACalculationManager(object):
         :param initial_workpackage: the workpackages the changes emit from
         :type initial_workpackage: Workpackage
         """
-        self.initial_workpackage = initial_workpackage
-        """the workpackage the changes emit from"""
-
         self.calculated_workpackages = []
         """holds the workpackages which have been changed"""
 
-        self.project_id = self.initial_workpackage._state.db
+        self.project_id = initial_workpackage._state.db
 
         # setup QuerysetCache
         self.workpackage_cache = QuerysetCache(Workpackage.objects.using(self.project_id).all())
@@ -183,6 +180,12 @@ class EVACalculationManager(object):
         self.workpackage_cache.map_by_attribute('parent_id')
         self.work_effort_cache.map_by_attribute('workpackage_id')
         self.employee_cache.map_by_attribute('id', unique=True)
+
+        self.initial_workpackage = self.workpackage_cache.id_map.get(initial_workpackage.id)
+        """the workpackage the changes emit from"""
+
+        # copy etc from given workpackage, since it might have been changed, without being saved
+        self.initial_workpackage.etc = initial_workpackage.etc
 
     def get_cached_work_efforts_by_workpackage(self, workpackage):
         """
