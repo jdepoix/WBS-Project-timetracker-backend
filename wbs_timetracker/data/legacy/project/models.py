@@ -46,7 +46,7 @@ class Workpackage(models.Model):
     fid_project = models.IntegerField()
     """be aware, that this is a ForeignKey, which is not implemented as such, since there is no Model for the referencing table"""
     resp_employee = models.ForeignKey(Employees, models.DO_NOTHING, db_column='fid_resp_emp')
-    parent = models.ForeignKey('Workpackage', null=True, db_column='fid_parent')
+    parent_id = models.IntegerField(db_column='fid_parent')
     parent_order_id = models.IntegerField()
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255, blank=True, null=True)
@@ -75,7 +75,7 @@ class Workpackage(models.Model):
     class Meta:
         managed = False
         db_table = 'workpackage'
-        unique_together = (('parent', 'parent_order_id'), ('string_id', 'fid_project'),)
+        unique_together = (('parent_id', 'parent_order_id'), ('string_id', 'fid_project'),)
 
     def __unicode__(self):
         return '{string_id} {workpackage_name}'.format(string_id=self.string_id, workpackage_name=self.name)
