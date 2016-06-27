@@ -2,6 +2,8 @@ from abc import ABCMeta, abstractmethod
 
 from rest_framework import mixins
 
+from eva.calculation import EVACalculationManager
+
 
 class EVARecalcMixin(object):
     """
@@ -37,10 +39,9 @@ class EVARecalcMixin(object):
         triggers the recalculation of the eva values
 
         :param workpackage:
+        :type workpackage: Workpackage
         """
-        # TODO: trigger EVA recalc here
-        # ViewSetEVACalculationManager.recalc_eva_values(self.get_workpackage(request, *args, **kwargs))
-        workpackage.save()
+        EVACalculationManager(workpackage).calculate()
 
 
 class EVACreateModelMixin(mixins.CreateModelMixin, EVARecalcMixin):
