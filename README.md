@@ -1,18 +1,102 @@
 # Setup
 
-### Requirements
-- pip
-- mysql
+This project was implemented using Django. Therefore a setup using Gunicorn + nginx is recommended and will be briefly
+explained in the following sections. But of course you are free to use any other setup, if you'd like to do so.
+
+### Preconditions
+
+- MySQL is up and running
+- At least one project has already been created by a FAT-Client!!!
+
+### Install Requirements
+
+Install the following packages, if you haven't already:
+
+> `sudo apt-get install python-pip python-dev mysql-server python-mysqldb libmysqlclient-dev nginx git`
+
+### Download the WBS-Project-timetracker-backend
+
+Move to the directory you'd like to keep the sources in and either download them manually or clone the git repository using:
+
+> `git clone https://github.com/jdepoix/WBS-Project-timetracker-backend.git or download`
+
+A common location would be something like `/var/www/`.
+
+### Setup Django Environment
 
 Make a copy of `conf.template.json` and rename it to `conf.json`. Now fill in the settings, needed for your environment.
 
-To setup the project run the setup script as sudo. You can find the setup script in the `setup` folder. This will create a virtualenv, install all requirements and run the migrations.
+To setup the project run the setup script. You can find the setup script in the `setup` folder.
+This will create a virtualenv, install all python requirements, run the django migrations and collect the static assets.
 
->`sudo ./dev`
+> `sudo ./setup/prod`
 
-If you're deploying on a production system, execture `prod` instead. Also you should consider using a dedicated user instead of running as root.
+You should maybe consider using a dedicated user instead of running as root.
 
 Note that the setup scripts only supports Unix based OS'es.
+
+### Gunicorn
+
+After you have setup your Django environment, you can try starting Gunicorn. Do this by running:
+
+> `virtualenv/bin/gunicorn --bind 127.0.0.1:8080 -w 2 wbs_timetracker.wsgi.prod`
+
+Gunicorn can now serve requests on localhost. I would highly recommend, adding Gunicorn to upstart, which provides a
+more robust way of handling Gunicorns lifecycle.
+
+##### Adding gunicorn to upstart
+
+Create and edit `/etc/init/gunicorn.conf` with the editor of your choice. Your upstart config could look something like
+this:
+
+```
+description "Gunicorn application server handling myproject"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+respawn
+chdir /var/www/WBS-Project-timetracker-backend
+
+exec virtualenv/bin/gunicorn --bind 127.0.0.1:8080 -w 2 wbs_timetracker.wsgi.prod
+```
+
+Of course this is only an example configuration and you can adjust this to your server environment.
+
+Now Gunicorn can be started using:
+
+> `sudo service gunicorn start`
+
+### Nginx
+
+Now we want to reverse proxy incoming requests to `127.0.0.1:8080`, for Gunicorn to serve them. This is done using Nginx.
+
+To create a new Nginx config, create and open `/etc/nginx/sites-available/wbs_timetracker` in the editor of your choice.
+
+A really simple configuration could look like this:
+
+```
+server {
+	listen *:80;
+
+	location / {
+		proxy_set_header Host      $host;
+		proxy_pass http://127.0.0.1:8080;
+	}
+
+	location /static {
+		alias /var/www/WBS-Project-timetracker-backend/static/;
+	}
+}
+```
+
+Of course this also only is an example configuration, which should be adjusted to your server environment. Also using HTTPS
+should be preferred. In this example HTTP is only used, for simplicities sake. The main points to take away from this is:
+
+- forward incoming requests to the adress gunicorn is listening on
+- forward requests to static assets to the static folder
+
+Do some tweaking and adjustments to meet your needs and then you're ready to go!
 
 # API endpoints
 
