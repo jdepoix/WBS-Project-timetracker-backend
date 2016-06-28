@@ -90,6 +90,16 @@ server {
 }
 ```
 
+Now create a link to your config in the `sites-enabled` folder and remove the default config, if there is one:
+
+> `ln -s /etc/nginx/sites-available/wbs_timetracker /etc/nginx/sites-enabled/wbs_timetracker`
+
+> `rm /etc/nginx/sites-enabled/default`
+
+and then restart Nginx:
+
+> `sudo service nginx restart`
+
 Of course this also only is an example configuration, which should be adjusted to your server environment. Also using HTTPS
 should be preferred. In this example HTTP is only used, for simplicities sake. The main points to take away from this is:
 
