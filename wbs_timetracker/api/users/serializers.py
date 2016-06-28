@@ -36,8 +36,8 @@ class WbsUserUpdateSerializer(BaseModelSerializer):
         fields = ('password',)
 
     def update(self, instance, validated_data):
-       instance.set_password(validated_data.get('password'))
-       instance.save()
+       instance.user.set_password(validated_data.get('password'))
+       instance.user.save()
 
        return instance.wbs_user
 
