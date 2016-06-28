@@ -1,7 +1,7 @@
 import os
 
 
-PROJECT_BASE_PATH = os.path.realpath(__file__) + '/../..'
+PROJECT_BASE_PATH = os.path.dirname(os.path.realpath(__file__)) + '/../'
 VIRTUAL_ENV_PATH = PROJECT_BASE_PATH + '/virtualenv'
 REQUIREMENTS_PATH = PROJECT_BASE_PATH + '/requirements'
 
@@ -19,7 +19,7 @@ def install_requirements(filename):
     sudo(VIRTUAL_ENV_PATH + '/bin/pip install -r ' + REQUIREMENTS_PATH + '/' + filename)
 
 def run_migrations():
-    sudo(PROJECT_BASE_PATH + ' manage.py migrate')
+    sudo(PROJECT_BASE_PATH + 'manage.py migrate')
 
 
 setup_virtualenv()
