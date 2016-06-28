@@ -20,7 +20,7 @@ CONF = json.load(open(CONF_FILEPATH))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'a7c=br_wnq7($(!*()#dtm*nbzz@^kq1v7+#)ni(@rb3g2_p9%'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*',]
 
 # Application definition
 
