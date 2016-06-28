@@ -115,13 +115,13 @@ Do some tweaking and adjustments to meet your needs and then you're ready to go!
 ```[POST]		/api/login/```
 - returns a authentication token, if correct credentials are supplied.
 
-  ######POST DATA:
-  ```js
-  {
-  	username: <String>,
-  	password: <String>
-  }
-  ```
+    ######POST DATA:
+    ```js
+    {
+        username: <String>,
+        password: <String>
+    }
+    ```
 
 - following request can be authenticated by adding "Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b" to the header
 
