@@ -48,10 +48,8 @@ class WbsUserModelViewSet(
 
         POST DATA:
         {
-            /** the users old password */
-            oldPassword: <String>,
             /** the users new password */
-            newPassword: <String>
+            password: <String>
         }
 
     ```[GET]		/api/users/<user_id>/projects/```
@@ -117,10 +115,8 @@ class WbsUserProjectsModelViewSet(
 
         POST DATA:
         {
-            /** the users old password */
-            oldPassword: <String>,
             /** the users new password */
-            newPassword: <String>
+            password: <String>
         }
 
     ```[GET]		/api/users/<user_id>/projects/```
@@ -150,3 +146,5 @@ class WbsUserProjectsModelViewSet(
 
     def get_queryset(self):
         return self.get_user_from_url().projects.all()
+
+    # TODO reset password endpoint POST /api/users/<user_id>/reset-password

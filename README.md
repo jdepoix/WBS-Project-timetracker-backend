@@ -62,10 +62,8 @@ Note that the setup scripts only supports Unix based OS'es.
     ######POST DATA:
     ```js
     {
-        /** the users old password */
-        oldPassword: <String>,
         /** the users new password */
-        newPassword: <String>
+        password: <String>
     }
     ```
 

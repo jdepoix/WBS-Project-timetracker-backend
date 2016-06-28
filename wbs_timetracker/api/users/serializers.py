@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 
 from rest_framework import serializers
-from rest_framework.exceptions import AuthenticationFailed, PermissionDenied
+from rest_framework.exceptions import PermissionDenied
 
 from core.api.serializers import BaseModelSerializer
 
@@ -29,21 +29,17 @@ class WbsUserSerializer(BaseModelSerializer):
 
 
 class WbsUserUpdateSerializer(BaseModelSerializer):
-    oldPassword = serializers.CharField(write_only=True)
-    newPassword = serializers.CharField(write_only=True)
+    password = serializers.CharField(write_only=True)
 
     class Meta:
         model = WbsUser
-        fields = ('oldPassword', 'newPassword',)
+        fields = ('password',)
 
     def update(self, instance, validated_data):
-        if instance.check_password(validated_data.get('oldPassword')):
-           instance.set_password(validated_data.get('newPassword'))
-           instance.save()
+       instance.set_password(validated_data.get('password'))
+       instance.save()
 
-           return instance.wbs_user
-
-        raise AuthenticationFailed
+       return instance.wbs_user
 
 
 class WbsUserProjectSerializer(BaseModelSerializer):
