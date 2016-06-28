@@ -227,20 +227,20 @@ Do some tweaking and adjustments to meet your needs and then you're ready to go!
 - creates a new booking.
 
 	######POST DATA:
-	```js
-	{
-		/** link to the workpackage this booking belongs to */
-		workpackage: <URL>,
-		/** the date of this booking. Format: YYYY-MM-DD */
-		date: <date>,
-		/** the workeffort in workdays (8h) */
-		effort: <double>,
-		/** the description of what was done */
-		description: <String>,
-	    /** OPTIONAL: the new ETC for the corresponding workpackage. If this isn't set, the ETC will be set to the old ETC - effort */
+    ```js
+    {
+        /** link to the workpackage this booking belongs to */
+        workpackage: <URL>,
+        /** the date of this booking. Format: YYYY-MM-DD */
+        date: <date>,
+        /** the workeffort in workdays (8h) */
+        effort: <double>,
+        /** the description of what was done */
+        description: <String>,
+        /** OPTIONAL: the new ETC for the corresponding workpackage. If this isn't set, the ETC will be set to the old ETC - effort */
         newETC: <double>
-	}
-	```
+    }
+    ```
 
 ```[GET]		/api/projects/<project_id>/bookings/<booking_id>/```
 - lists all information regarding the booking with the booking id `<booking_id>`.
@@ -270,9 +270,9 @@ Do some tweaking and adjustments to meet your needs and then you're ready to go!
 - update the ETC of the workpackage with the id `<workpackage_id>`.
 
 	######PATCH DATA:
-	```js
-	{
-		/** new etc for this workpackage */
-		etc: <double>
-	}
-	```
+    ```js
+    {
+        /** new etc for this workpackage */
+        etc: <double>
+    }
+    ```
