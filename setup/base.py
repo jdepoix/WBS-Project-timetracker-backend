@@ -18,8 +18,17 @@ def setup_virtualenv():
 def install_requirements(filename):
     sudo(VIRTUAL_ENV_PATH + '/bin/pip install -r ' + REQUIREMENTS_PATH + '/' + filename)
 
+def run_manage_command(command):
+    sudo(VIRTUAL_ENV_PATH + '/bin/python ' + PROJECT_BASE_PATH + 'manage.py ' + command)
+
 def run_migrations():
-    sudo(VIRTUAL_ENV_PATH + '/bin/python ' + PROJECT_BASE_PATH + 'manage.py migrate')
+    run_manage_command('migrate')
 
+def collect_static():
+    run_manage_command('collectstatic --noinput')
 
-setup_virtualenv()
+def setup(requirements_filename):
+    setup_virtualenv()
+    install_requirements(requirements_filename)
+    collect_static()
+    run_migrations()

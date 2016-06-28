@@ -3,5 +3,4 @@
 from base import *
 
 
-install_requirements('prod.txt')
-run_migrations()
+setup('prod.txt')
