@@ -1,6 +1,4 @@
-from settings.base import CONF
-
-from data.core.db_loader import DbLoader
+from core.data.db_loader import DbLoader
 from data.legacy.id_wbs.models import DbIdentifier
 
 

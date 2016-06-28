@@ -6,6 +6,9 @@ from settings.base import CONF
 class DbIdentifier(models.Model):
     db = models.CharField(unique=True, max_length=255)
 
+    def __unicode__(self):
+        return str(self.db)
+
     @property
     def db_config(self):
         """

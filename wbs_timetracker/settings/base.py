@@ -36,6 +36,8 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
+    'crispy_forms',
 ]
 
 INTERNAL_APPS = [
@@ -93,6 +95,19 @@ DATABASES = {
         'HOST': CONF.get('database').get('host'),
         'PORT': CONF.get('database').get('port'),
     }
+}
+
+# Django REST Framework
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ],
+    'DATETIME_FORMAT': '%Y-%m-%d',
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
 }
 
 # Password validation
