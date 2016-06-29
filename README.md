@@ -253,7 +253,7 @@ Do some tweaking and adjustments to meet your needs and then you're ready to go!
 
 ### Workpackages
 
-```[GET]		/api/projects/<project_id>/workpackages/(?(topleve_wp|inactive))```
+```[GET]		/api/projects/<project_id>/workpackages/(?(toplevel_wp|inactive))```
 - lists all workpackages for the project with the id `<project_id>`.
 
     ######PARAMS:

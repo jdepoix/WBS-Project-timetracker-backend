@@ -17,7 +17,7 @@ class WorkpackagesModelViewSet(
     """
     ### Endpoints:
 
-    ```[GET]		/api/projects/<project_id>/workpackages/(?(topleve_wp|inactive))```
+    ```[GET]		/api/projects/<project_id>/workpackages/(?(toplevel_wp|inactive))```
 
         lists all workpackages for the project with the id <project_id>.
 
