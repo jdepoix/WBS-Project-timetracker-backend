@@ -111,9 +111,9 @@ Do some tweaking and adjustments to meet your needs and then you're ready to go!
 # Dev Setup
 
 If you're settings the project up for development, also go through the steps described in the sections
-[Preconditions](#Preconditions), [Install Requirements](#Install-Requirements),
-[Download the WBS-Project-timetracker-backend](#Download-the-WBS-Project-timetracker-backend),
-[Setup Django Environment](#Setup-Django-Environment). But instead of running the `prod` setup script, run `dev`.
+[Preconditions](#preconditions), [Install Requirements](#install-requirements),
+[Download the WBS-Project-timetracker-backend](#download-the-wbs-project-timetracker-backend),
+[Setup Django Environment](#setup-django-environment). But instead of running the `prod` setup script, run `dev`.
 
 ### Run Server
 
