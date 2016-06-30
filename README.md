@@ -108,6 +108,21 @@ should be preferred. In this example HTTP is only used, for simplicities sake. T
 
 Do some tweaking and adjustments to meet your needs and then you're ready to go!
 
+# Dev Setup
+
+If you're settings the project up for development, also go through the steps described in the sections
+[Preconditions](#Preconditions), [Install Requirements](#Install-Requirements),
+[Download the WBS-Project-timetracker-backend](#Download-the-WBS-Project-timetracker-backend),
+[Setup Django Environment](#Setup-Django-Environment). But instead of running the `prod` setup script, run `dev`.
+
+### Run Server
+
+You can start the server by running Djangos `./manage.py runserver`.
+
+### Run Tests
+
+You can run the test suite by running `./manage.py test --settings=settings.test`.
+
 # API endpoints
 
 ### Login
