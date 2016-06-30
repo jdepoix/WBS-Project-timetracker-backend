@@ -1,4 +1,4 @@
-# Setup
+# Prod Setup
 
 This project was implemented using Django. Therefore a setup using Gunicorn + nginx is recommended and will be briefly
 explained in the following sections. But of course you are free to use any other setup, if you'd like to do so.

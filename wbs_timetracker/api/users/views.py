@@ -71,7 +71,7 @@ class WbsUserModelViewSet(
     queryset = WbsUser.objects.all()
 
     def get_serializer_class(self):
-        if self.action == 'update':
+        if self.action == 'update' or self.action == 'partial_update':
             return WbsUserUpdateSerializer
         else:
             return WbsUserSerializer
@@ -146,5 +146,3 @@ class WbsUserProjectsModelViewSet(
 
     def get_queryset(self):
         return self.get_user_from_url().projects.all()
-
-    # TODO reset password endpoint POST /api/users/<user_id>/reset-password
