@@ -67,21 +67,23 @@ class TestWBSProjectFactory(object):
     def create_workpackages(self):
         self.workpackages = []
 
+        parent_workpackage = self.create_workpackage(
+            string_id='1.0',
+            parent_id=0,
+            parent_order_id=1,
+            name='test_project',
+            bac=20,
+            is_toplevel_wp=1,
+        )
+
         self.workpackages.append(
-            self.create_workpackage(
-                string_id='1.0',
-                parent_id=0,
-                parent_order_id=1,
-                name='test_project',
-                bac=20,
-                is_toplevel_wp=1,
-            )
+            parent_workpackage
         )
 
         self.workpackages.append(
             self.create_workpackage(
                 string_id='1.1',
-                parent_id=1,
+                parent_id=parent_workpackage.id,
                 parent_order_id=1,
                 name='ap1',
                 bac=10,
@@ -92,7 +94,7 @@ class TestWBSProjectFactory(object):
         self.workpackages.append(
             self.create_workpackage(
                 string_id='1.2',
-                parent_id=1,
+                parent_id=parent_workpackage.id,
                 parent_order_id=2,
                 name='ap2',
                 bac=10,
