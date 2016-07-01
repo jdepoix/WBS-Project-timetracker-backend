@@ -130,7 +130,7 @@ You can run the test suite by running `./manage.py test --settings=settings.test
 ```[POST]		/api/login/```
 - returns a authentication token, if correct credentials are supplied.
 
-    ######POST DATA:
+    ###### POST DATA:
     ```js
     {
         username: <String>,
@@ -145,14 +145,14 @@ You can run the test suite by running `./manage.py test --settings=settings.test
 ```[GET]		/api/users/(?(username))```
 - lists all users
 
-    ######PARAMS:
+    ###### PARAMS:
 	- `username`: <String>
 		filter by the users username. Note that usernames are unique.
 
 ```[POST]		/api/users/```
 - creates a new user
 
-    ######POST DATA:
+    ###### POST DATA:
     ```js
     {
         /** new users username */
@@ -168,7 +168,7 @@ You can run the test suite by running `./manage.py test --settings=settings.test
 ```[PATCH]		/api/users/<user_id>/```
 - change password of the user with the user id `<user_id>`.
 
-    ######POST DATA:
+    ###### POST DATA:
     ```js
     {
         /** the users new password */
@@ -182,7 +182,7 @@ You can run the test suite by running `./manage.py test --settings=settings.test
 ```[POST]		/api/users/<user_id>/projects/```
 - add the user to an already existing project
 
-    ######POST DATA:
+    ###### POST DATA:
     ```js
     {
         /** URL of the project you want the user to be added to */
@@ -198,7 +198,7 @@ You can run the test suite by running `./manage.py test --settings=settings.test
 ```[POST]		/api/booking-sessions/```
 - open a new booking session for the currently logged in user.
 
-    ######POST DATA:
+    ###### POST DATA:
     ```js
     {
         /** the URL to the workpackage ressource, this is booking is for **/
@@ -220,7 +220,7 @@ You can run the test suite by running `./manage.py test --settings=settings.test
 ```[POST]		/api/projects/```
 - this endpoint is called, when a new project is created by the FAT-Client. It doesn't actually create a new project, it is just needed to update the backend, due to crappy legacy code.
 
-    ######POST DATA:
+    ###### POST DATA:
 	no post data is needed, since the information is already in the database.
 
 ```[GET]		/api/projects/<project_id>/```
@@ -231,7 +231,7 @@ You can run the test suite by running `./manage.py test --settings=settings.test
 ```[GET]		/api/projects/<project_id>/bookings/(?(date|workpackage_id))```
 - lists all bookings on this project.
 
-	######PARAMS:
+	###### PARAMS:
 	- `date`: <date>
 		if date is set, only bookings from this date will be listed. Format: YYYY-MM-DD.
 
@@ -241,7 +241,7 @@ You can run the test suite by running `./manage.py test --settings=settings.test
 ```[POST]		/api/projects/<project_id>/bookings/```
 - creates a new booking.
 
-	######POST DATA:
+	###### POST DATA:
     ```js
     {
         /** link to the workpackage this booking belongs to */
@@ -271,7 +271,7 @@ You can run the test suite by running `./manage.py test --settings=settings.test
 ```[GET]		/api/projects/<project_id>/workpackages/(?(toplevel_wp|inactive))```
 - lists all workpackages for the project with the id `<project_id>`.
 
-    ######PARAMS:
+    ###### PARAMS:
 	- `toplevel_wp`: <boolean>
 		if true only toplevel workpackages are shown, if false only non toplevel workpackages.
 
@@ -284,7 +284,7 @@ You can run the test suite by running `./manage.py test --settings=settings.test
 ```[PATCH]		/api/projects/<project_id>/workpackages/<workpackage_id>/```
 - update the ETC of the workpackage with the id `<workpackage_id>`.
 
-	######PATCH DATA:
+	###### PATCH DATA:
     ```js
     {
         /** new etc for this workpackage */
