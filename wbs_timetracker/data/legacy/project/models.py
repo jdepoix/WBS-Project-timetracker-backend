@@ -78,7 +78,10 @@ class Workpackage(models.Model):
         unique_together = (('parent_id', 'parent_order_id'), ('string_id', 'fid_project'),)
 
     def __unicode__(self):
-        return '{string_id} {workpackage_name}'.format(string_id=self.string_id, workpackage_name=self.name)
+        return u'{string_id} {workpackage_name}'.format(
+            string_id=self.string_id,
+            workpackage_name=self.name.encode('utf-8').decode('utf-8')
+        )
 
 
 class WpAllocation(models.Model):
