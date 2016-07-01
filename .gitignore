@@ -1,0 +1,6 @@
+virtualenv
+conf.json
+.idea
+*.pyc
+.DS_Store
+static
