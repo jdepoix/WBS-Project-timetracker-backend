@@ -7,7 +7,7 @@ class DbIdentifier(models.Model):
     db = models.CharField(unique=True, max_length=255)
 
     def __unicode__(self):
-        return str(self.db)
+        return unicode(self.db)
 
     @property
     def db_config(self):
