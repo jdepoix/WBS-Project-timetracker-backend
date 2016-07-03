@@ -23,7 +23,7 @@ def run_virtualenv_python(python_file_path):
     sudo(VIRTUAL_ENV_PATH + '/bin/python ' + python_file_path)
 
 def run_manage_command(command):
-    run_virtualenv_python(PROJECT_BASE_PATH + 'manage.py ' + command)
+    run_virtualenv_python(PROJECT_BASE_PATH + '/manage.py ' + command)
 
 def run_migrations():
     run_manage_command('migrate')
