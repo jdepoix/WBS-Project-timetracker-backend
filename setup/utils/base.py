@@ -37,6 +37,6 @@ def run_legacy_migrations():
 def setup(requirements_filename):
     setup_virtualenv()
     install_requirements(requirements_filename)
-    collect_static()
     run_legacy_migrations()
+    collect_static()
     run_migrations()
