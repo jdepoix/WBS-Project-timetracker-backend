@@ -6,7 +6,6 @@ explained in the following sections. But of course you are free to use any other
 ### Preconditions
 
 - MySQL is up and running
-- At least one project has already been created by a FAT-Client!!!
 
 ### Install Requirements
 
@@ -25,9 +24,10 @@ A common location would be something like `/var/www/`.
 ### Setup Django Environment
 
 Make a copy of `conf.template.json` and rename it to `conf.json`. Now fill in the settings, needed for your environment.
+The given MySQL user should have root privileges.
 
 To setup the project run the setup script. You can find the setup script in the `setup` folder.
-This will create a virtualenv, install all python requirements, run the django migrations and collect the static assets.
+This will create a virtualenv, install all python requirements, run the legacy and django migrations and collect the static assets.
 
 > `sudo ./setup/prod`
 
