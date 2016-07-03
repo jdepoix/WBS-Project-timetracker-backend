@@ -95,7 +95,15 @@ class LegacyMigrationManager(object):
 if __name__ == '__main__':
     project_base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
-    LegacyMigrationManager(
-        project_base_path + '/setup/legacy_migrations',
-        project_base_path + '/conf.json'
-    ).run_legacy_migrations()
+    print '+ start running legacy migrations'
+    print '|'
+
+    try:
+        LegacyMigrationManager(
+            project_base_path + '/setup/legacy_migrations',
+            project_base_path + '/conf.json'
+        ).run_legacy_migrations()
+
+        print '+--- DONE'
+    except:
+        print '+--- FAILED'
