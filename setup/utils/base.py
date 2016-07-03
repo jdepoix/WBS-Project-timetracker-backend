@@ -35,9 +35,8 @@ def run_legacy_migrations():
     run_virtualenv_python(PROJECT_BASE_PATH + '/setup/utils/legacy_migration_manager.py')
 
 def setup(requirements_filename):
-    # TODO uncomment
-    # setup_virtualenv()
-    # install_requirements(requirements_filename)
-    # collect_static()
+    setup_virtualenv()
+    install_requirements(requirements_filename)
+    collect_static()
     run_legacy_migrations()
-    # run_migrations()
+    run_migrations()
