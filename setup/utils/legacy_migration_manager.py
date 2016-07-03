@@ -54,13 +54,17 @@ class LegacyMigrationManager(object):
         :return: list with all migrations
         :rtype: list
         """
-        migrations = []
-
-        for migration_file in [
+        migration_files = [
             self.legacy_migrations_dir_path + '/' + migration_file
                 for migration_file in os.listdir(self.legacy_migrations_dir_path)
                     if migration_file.endswith('.sql')
-        ]:
+        ]
+
+        migration_files.sort()
+
+        migrations = []
+
+        for migration_file in migration_files:
             with open(migration_file) as migration_file_handler:
                 migrations.append(migration_file_handler.read())
 
