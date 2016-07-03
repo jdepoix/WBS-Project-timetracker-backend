@@ -17,7 +17,7 @@ Install the following packages, if you haven't already:
 
 Move to the directory you'd like to keep the sources in and either download them manually or clone the git repository using:
 
-> `git clone https://github.com/jdepoix/WBS-Project-timetracker-backend.git or download`
+> `git clone https://github.com/jdepoix/WBS-Project-timetracker-backend.git`
 
 A common location would be something like `/var/www/`.
 
