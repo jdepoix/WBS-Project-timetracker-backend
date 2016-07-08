@@ -29,7 +29,15 @@ The given MySQL user should have root privileges.
 To setup the project run the setup script. You can find the setup script in the `setup` folder.
 This will create a virtualenv, install all python requirements, run the legacy and django migrations and collect the static assets.
 
+If you have previously created a project on the database your are using, you won't need to run the legacy migrations,
+since the database and tables were already created by the previous setup routine. In that case you should run the script
+using the `--no-legacy-migrations` flag.
+
+Without previously created projects:
 > `sudo ./setup/prod`
+
+With previously created projects:
+> `sudo ./setup/prod --no-legacy-migrations`
 
 You should maybe consider using a dedicated user instead of running as root.
 

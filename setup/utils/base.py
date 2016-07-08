@@ -1,3 +1,4 @@
+import sys
 import os
 
 
@@ -34,6 +35,9 @@ def run_legacy_migrations():
 def setup(requirements_filename):
     setup_virtualenv()
     install_requirements(requirements_filename)
-    run_legacy_migrations()
+
+    if '--no-legacy-migrations' in sys.argv:
+        run_legacy_migrations()
+
     collect_static()
     run_migrations()
