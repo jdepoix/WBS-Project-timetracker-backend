@@ -9,18 +9,15 @@ REQUIREMENTS_PATH = PROJECT_BASE_PATH + '/requirements'
 def execute(command):
     os.system(command)
 
-def sudo(command):
-    execute('sudo ' + command)
-
 def setup_virtualenv():
-    sudo('pip install virtualenv')
-    sudo('virtualenv ' + VIRTUAL_ENV_PATH)
+    execute('pip install virtualenv')
+    execute('virtualenv ' + VIRTUAL_ENV_PATH)
 
 def install_requirements(filename):
-    sudo(VIRTUAL_ENV_PATH + '/bin/pip install -r ' + REQUIREMENTS_PATH + '/' + filename)
+    execute(VIRTUAL_ENV_PATH + '/bin/pip install -r ' + REQUIREMENTS_PATH + '/' + filename)
 
 def run_virtualenv_python(python_file_path):
-    sudo(VIRTUAL_ENV_PATH + '/bin/python ' + python_file_path)
+    execute(VIRTUAL_ENV_PATH + '/bin/python ' + python_file_path)
 
 def run_manage_command(command):
     run_virtualenv_python(PROJECT_BASE_PATH + '/manage.py ' + command)
