@@ -107,7 +107,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated'
+        'core.api.permissions.IsAuthenticatedOrOptionsOnly'
     ],
     'DATETIME_FORMAT': '%Y-%m-%d',
     'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),

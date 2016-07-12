@@ -1,15 +1,25 @@
 from rest_framework.permissions import BasePermission
 
-
-class IsAuthenticatedOrPostOnly(BasePermission):
+class IsAuthenticatedOrOptionsOnly(BasePermission):
     """
-    if user is not authenticated, only POST is allowed
+    if user is not authenticated, only OPTIONS is allowed
     """
-    SAFE_METHODS = ('POST', 'HEAD', 'OPTIONS')
-
     def has_permission(self, request, view):
         return (
-            request.method in IsAuthenticatedOrPostOnly.SAFE_METHODS or
+            request.method in self.safe_methods or
             request.user and
             request.user.is_authenticated()
         )
+
+    @property
+    def safe_methods(self):
+        return ('OPTIONS',)
+
+
+class IsAuthenticatedOrPostOnly(IsAuthenticatedOrOptionsOnly):
+    """
+    if user is not authenticated, only POST is allowed
+    """
+    @property
+    def safe_methods(self):
+        return ('POST', 'HEAD', 'OPTIONS',)
