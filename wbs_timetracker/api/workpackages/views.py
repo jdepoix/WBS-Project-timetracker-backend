@@ -50,6 +50,8 @@ class WorkpackagesModelViewSet(
             self.kwargs.get('project_id')
         ).filter(
             allocated_employees__login=self.request.user.username
+        ).order_by(
+            'string_id'
         )
 
     def get_workpackage(self, request, *args, **kwargs):
