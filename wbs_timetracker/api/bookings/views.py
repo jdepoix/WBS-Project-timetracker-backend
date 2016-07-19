@@ -68,6 +68,8 @@ class BookingsModelViewSet(
             self.kwargs.get('project_id')
         ).filter(
             employee__login=self.request.user.username
+        ).order_by(
+            '-rec_date'
         )
 
     def get_workpackage(self, request, *args, **kwargs):
