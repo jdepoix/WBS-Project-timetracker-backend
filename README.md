@@ -47,7 +47,7 @@ Note that the setup scripts only supports Unix based OS'es.
 
 After you have setup your Django environment, you can try starting Gunicorn. Do this by running:
 
-> `virtualenv/bin/gunicorn --bind 127.0.0.1:8080 -w 2 wbs_timetracker.wsgi.prod`
+> `virtualenv/bin/gunicorn --bind 127.0.0.1:8080 wbs_timetracker.wsgi.prod`
 
 Gunicorn can now serve requests on localhost. Although this isn't mandatory, I would highly recommend adding Gunicorn to upstart, which provides a
 more robust way of handling Gunicorns lifecycle.
