@@ -3,6 +3,18 @@ from abc import ABCMeta, abstractproperty
 from rest_framework import serializers
 from rest_framework.reverse import reverse
 
+from core.api.serializers import BaseModelSerializer
+
+from data.legacy.id_wbs.models import DbIdentifier
+
+
+class ProjectsSerializer(BaseModelSerializer):
+    db = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = DbIdentifier
+        fields = ['self', 'db',]
+
 
 class SubProjectHyperlinkedRelatedField(serializers.HyperlinkedRelatedField):
     """

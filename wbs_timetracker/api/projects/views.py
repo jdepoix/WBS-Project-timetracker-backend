@@ -1,11 +1,11 @@
 from rest_framework import mixins, viewsets
 from rest_framework.response import Response
 
-from core.api.serializers import BaseModelSerializer
 from core.api.responses import ExceptionResponse
 
 from data.legacy.project.project_db_loader import ProjectDbLoader
-from data.legacy.id_wbs.models import DbIdentifier
+
+from api.projects.serializers import ProjectsSerializer
 
 
 class ProjectsModelViewSet(
@@ -32,7 +32,7 @@ class ProjectsModelViewSet(
 
         show specific information about the project with the id <project_id>.
     """
-    serializer_class = BaseModelSerializer.default_serializer_factory(DbIdentifier)
+    serializer_class = ProjectsSerializer
 
     def get_queryset(self):
         return self.request.user.wbs_user.projects.all()
