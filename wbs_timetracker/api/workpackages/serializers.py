@@ -16,7 +16,7 @@ class WorkpackageHyperlinkedRelatedField(SubProjectHyperlinkedRelatedField):
 
 
 class WorkpackageSerializer(BaseModelSerializer):
-    self = WorkpackageHyperlinkedRelatedField(read_only= True, source='*')
+    self = WorkpackageHyperlinkedRelatedField(read_only=True, source='*')
     stringId = serializers.CharField(source='string_id', read_only=True)
     name = serializers.CharField(read_only=True)
     description = serializers.CharField(read_only=True)

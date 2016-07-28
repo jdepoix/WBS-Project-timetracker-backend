@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from rest_framework.reverse import reverse
 from rest_framework.exceptions import NotFound, ParseError
 
 from core.api.urlresolvers import URLString
@@ -9,23 +8,21 @@ from data.legacy.id_wbs.models import DbIdentifier
 from data.legacy.project.models import Workpackage
 from data.wbs_user.models import BookingSession
 
+from api.workpackages.serializers import WorkpackageSerializer
+
 
 class BookingSessionSerializer(BaseModelSerializer):
-    class Meta:
-        model = BookingSession
-        fields = ('workpackage', 'self',)
-
+    start_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%dT%H:%M:%S')
     workpackage = serializers.SerializerMethodField()
 
     def get_workpackage(self, obj):
-        return reverse(
-            'workpackage-detail',
-            kwargs={
-                'project_id': obj.db.id,
-                'pk': obj.workpackage_id,
-            },
-            request=self.context.get('request')
-        )
+        request = self.context.get('request')
+        request.parser_context.get('kwargs')['project_id'] = obj.db.id
+        return WorkpackageSerializer(obj.workpackage, context={'request': request}).data
+
+    class Meta:
+        model = BookingSession
+        fields = ('workpackage', 'self', 'start_time')
 
 
 class BookingSessionCreateSerializer(BookingSessionSerializer):
