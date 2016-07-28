@@ -6,7 +6,7 @@ from core.api.serializers import BaseModelSerializer, ZeroTimeDateTimeField
 from data.legacy.project.models import WorkEffort, Employees
 
 from api.projects.serializers import SubProjectHyperlinkedRelatedField
-from api.workpackages.serializers import WorkpackageHyperlinkedRelatedField
+from api.workpackages.serializers import WorkpackageSerializer
 
 
 class BookingsHyperlinkedRelatedField(SubProjectHyperlinkedRelatedField):
@@ -19,7 +19,7 @@ class BookingsHyperlinkedRelatedField(SubProjectHyperlinkedRelatedField):
 
 class WorkEffortSerializer(BaseModelSerializer):
     self = BookingsHyperlinkedRelatedField(read_only=True, source='*')
-    workpackage = WorkpackageHyperlinkedRelatedField()
+    workpackage = WorkpackageSerializer()
     date = ZeroTimeDateTimeField(source='rec_date')
     newETC = serializers.FloatField(write_only=True, required=False)
 
