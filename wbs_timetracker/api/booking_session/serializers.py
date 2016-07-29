@@ -12,7 +12,7 @@ from api.workpackages.serializers import WorkpackageSerializer
 
 
 class BookingSessionSerializer(BaseModelSerializer):
-    start_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%dT%H:%M:%S')
+    startTime = serializers.DateTimeField(read_only=True, format='%Y-%m-%dT%H:%M:%S', source='start_time')
     workpackage = serializers.SerializerMethodField()
 
     def get_workpackage(self, obj):
@@ -22,7 +22,7 @@ class BookingSessionSerializer(BaseModelSerializer):
 
     class Meta:
         model = BookingSession
-        fields = ('workpackage', 'self', 'start_time')
+        fields = ('workpackage', 'self', 'startTime')
 
 
 class BookingSessionCreateSerializer(BookingSessionSerializer):
