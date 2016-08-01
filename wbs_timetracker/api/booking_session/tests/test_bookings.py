@@ -30,7 +30,7 @@ class BookingSessionsModelViewSetTests(WBSAPITestCase):
         })
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(len(response.data), 1)
+        self.assertEqual(len(response.data), 2)
 
     def test_delete_booking_session(self):
         workpackage = Workpackage.objects.using(self.project_factory.project_id).filter(is_toplevel_wp=False).first()
