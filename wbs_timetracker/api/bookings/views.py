@@ -5,7 +5,7 @@ from core.api.mixins import EVAUpdateModelMixin, EVADestroyModelMixin
 from data.legacy.project.models import WorkEffort
 
 from api.bookings.filters import WorkEffortFilter
-from api.bookings.serializers import WorkEffortSerializer
+from api.bookings.serializers import WorkEffortReadSerializer, WorkEffortWriteSerializer
 
 
 class BookingsModelViewSet(
@@ -60,7 +60,6 @@ class BookingsModelViewSet(
 
         deletes the booking with the id <booking_id>.
     """
-    serializer_class = WorkEffortSerializer
     filter_class = WorkEffortFilter
 
     def get_queryset(self):
@@ -82,3 +81,9 @@ class BookingsModelViewSet(
         workpackage.etc = serializer.initial_data.get('newETC', workpackage.etc - serializer.instance.effort)
 
         self.recalc_eva_values(workpackage)
+
+    def get_serializer_class(self):
+        if self.action == 'list' or self.action == 'retrieve':
+            return WorkEffortReadSerializer
+
+        return WorkEffortWriteSerializer
