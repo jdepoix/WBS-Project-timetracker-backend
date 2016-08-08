@@ -38,9 +38,7 @@ class WorkEffortWriteSerializer(WorkEffortReadSerializer):
             raise ParseError('Can\'t book on toplevel workpackage!')
 
         if (
-            not validated_data.get('newETC') and workpackage.etc - validated_data.get('effort') < 0
-                or
-            validated_data.get('newETC') and validated_data.get('newETC') - validated_data.get('effort') < 0
+            not validated_data.get('newETC') != None and workpackage.etc - validated_data.get('effort') < 0
         ):
             raise ParseError('This booking would bring the ETC below 0, which is not allowed!')
 
