@@ -12,7 +12,7 @@ from api.workpackages.serializers import WorkpackageSerializer
 
 
 class BookingSessionSerializer(BaseModelSerializer):
-    startTime = serializers.DateTimeField(read_only=True, format='%Y-%m-%dT%H:%M:%S', source='start_time')
+    startTime = serializers.DateTimeField(read_only=True, format='iso-8601', source='start_time')
     workpackage = serializers.SerializerMethodField()
 
     def get_workpackage(self, obj):
